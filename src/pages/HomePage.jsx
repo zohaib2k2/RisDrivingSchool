@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { T } from "../constants/translation.js";
+import { T } from "../constants/translation";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
@@ -8,8 +7,7 @@ import FeaturesSection from "../components/FeaturesSection";
 import CtaSection from "../components/CtaSection";
 import Footer from "../components/Footer";
 
-export default function HomePage() {
-  const [lang, setLang] = useState("en");
+export default function HomePage({ lang, onLangChange }) {
   const t = T[lang];
 
   return (
@@ -21,7 +19,7 @@ export default function HomePage() {
       overflowX: "hidden",
     }}>
       <Banner items={t.banner} />
-      <Navbar nav={t.nav} lang={lang} onLangChange={setLang} />
+      <Navbar nav={t.nav} lang={lang} onLangChange={onLangChange} />
       <HeroSection hero={t.hero} card={t.card} />
       <StatsSection stats={t.stats} />
       <FeaturesSection features={t.features} lang={lang} />

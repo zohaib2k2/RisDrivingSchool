@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+const NAV_LINKS = [
+  { key: "emergency", to: "/RisDrivingSchool/emergency" },
+  { key: "packages",  to: "/RisDrivingSchool/packages"  },
+  { key: "locations", to: "/RisDrivingSchool/locations" },
+  { key: "about",     to: "/RisDrivingSchool/about"     },
+];
 
 export default function Navbar({ nav, lang, onLangChange }) {
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
@@ -30,7 +39,7 @@ export default function Navbar({ nav, lang, onLangChange }) {
       }}
     >
       {/* Logo */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "inherit" }}>
         <div style={{
           width: 40, height: 40, borderRadius: 12,
           background: "linear-gradient(135deg,#1e40af,#0ea5e9)",
@@ -46,13 +55,29 @@ export default function Navbar({ nav, lang, onLangChange }) {
             School
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Nav links */}
       <div className="nav-links" style={{ display: "flex", gap: 30, alignItems: "center" }}>
-        {[nav.emergency, nav.packages, nav.locations, nav.about].map((l, i) => (
-          <a key={i} className="nav-link" href="#">{l}</a>
-        ))}
+        {NAV_LINKS.map(({ key, to }) => {
+          const isActive = pathname === to;
+          return (
+            <Link
+              key={key}
+              to={to}
+              className="nav-link"
+              style={{
+                textDecoration: "none",
+                color: isActive ? "#60a5fa" : undefined,
+                borderBottom: isActive ? "2px solid #60a5fa" : "2px solid transparent",
+                paddingBottom: 2,
+                transition: "color 0.2s, border-color 0.2s",
+              }}
+            >
+              {nav[key]}
+            </Link>
+          );
+        })}
       </div>
 
       {/* Lang switcher + CTA */}
@@ -67,9 +92,11 @@ export default function Navbar({ nav, lang, onLangChange }) {
             onClick={() => onLangChange("nl")}
           >NL</button>
         </div>
-        <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 13, borderRadius: 11 }}>
-          {nav.bookTrial}
-        </button>
+        <Link to="/locations">
+          <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 13, borderRadius: 11 }}>
+            {nav.bookTrial}
+          </button>
+        </Link>
       </div>
     </nav>
   );
