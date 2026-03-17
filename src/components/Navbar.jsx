@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { key: "packages",  to: "/RisDrivingSchool/packages"  },
   { key: "locations", to: "/RisDrivingSchool/locations" },
   { key: "about",     to: "/RisDrivingSchool/about"     },
+  { key: "calculator", to: "/RisDrivingSchool/calculator" },
 ];
 
 export default function Navbar({ nav, lang, onLangChange }) {
@@ -95,6 +96,11 @@ export default function Navbar({ nav, lang, onLangChange }) {
         <Link to="/locations">
           <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 13, borderRadius: 11 }}>
             {nav.bookTrial}
+          </button>
+        </Link>
+        <Link to="/RisDrivingSchool/calculator">
+          <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 13, borderRadius: 11 }}>
+            Lesson Cost Calculator
           </button>
         </Link>
       </div>
