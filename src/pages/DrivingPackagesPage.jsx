@@ -64,7 +64,7 @@ const PAGE_T = {
         crashOriginal: 975,
         lessons: 15,
         isMostChosen: false,
-        features: ["15 driving lessons", "Free re-exam guarantee worth €350", "Flexible Klarna payment"],
+        features: ["15 driving lessons",  "Flexible Klarna payment"],
       },
       {
         id: "emergency",
@@ -77,7 +77,7 @@ const PAGE_T = {
         lessons: 15,
         isMostChosen: true,
         alwaysCrash: true,
-        features: ["15 driving lessons", "Free re-exam guarantee worth €350", "Priority scheduling", "Flexible Klarna payment"],
+        features: ["15 driving lessons",  "Priority scheduling", "Flexible Klarna payment"],
       },
       {
         id: "advanced",
@@ -89,7 +89,7 @@ const PAGE_T = {
         crashOriginal: 1800,
         lessons: 25,
         isMostChosen: false,
-        features: ["25 driving lessons", "Free re-exam guarantee worth €350", "Flexible Klarna payment"],
+        features: ["25 driving lessons",  "Flexible Klarna payment"],
       },
       {
         id: "premium",
@@ -101,7 +101,7 @@ const PAGE_T = {
         crashOriginal: 2610,
         lessons: 35,
         isMostChosen: false,
-        features: ["35 driving lessons", "Free re-exam guarantee worth €350", "Dedicated instructor", "Flexible Klarna payment"],
+        features: ["35 driving lessons","Dedicated instructor", "Flexible Klarna payment"],
       },
     ],
   },
@@ -157,7 +157,7 @@ const PAGE_T = {
         crashOriginal: 975,
         lessons: 15,
         isMostChosen: false,
-        features: ["15 rijlessen", "Gratis herexamengarantie t.w.v. €350", "Flexibele Klarna-betaling"],
+        features: ["15 rijlessen",  "Flexibele Klarna-betaling"],
       },
       {
         id: "emergency",
@@ -170,7 +170,7 @@ const PAGE_T = {
         lessons: 15,
         isMostChosen: true,
         alwaysCrash: true,
-        features: ["15 rijlessen", "Gratis herexamengarantie t.w.v. €350", "Prioriteitsplanning", "Flexibele Klarna-betaling"],
+        features: ["15 rijlessen",  "Prioriteitsplanning", "Flexibele Klarna-betaling"],
       },
       {
         id: "advanced",
@@ -182,7 +182,7 @@ const PAGE_T = {
         crashOriginal: 1800,
         lessons: 25,
         isMostChosen: false,
-        features: ["25 rijlessen", "Gratis herexamengarantie t.w.v. €350", "Flexibele Klarna-betaling"],
+        features: ["25 rijlessen", "Flexibele Klarna-betaling"],
       },
       {
         id: "premium",
@@ -194,7 +194,7 @@ const PAGE_T = {
         crashOriginal: 2610,
         lessons: 35,
         isMostChosen: false,
-        features: ["35 rijlessen", "Gratis herexamengarantie t.w.v. €350", "Vaste instructeur", "Flexibele Klarna-betaling"],
+        features: ["35 rijlessen",  "Vaste instructeur", "Flexibele Klarna-betaling"],
       },
     ],
   },
