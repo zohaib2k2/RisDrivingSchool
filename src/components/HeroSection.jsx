@@ -3,18 +3,42 @@ import BookingCard from "./BookingCard";
 export default function HeroSection({ hero, card }) {
   return (
     <section className="hero-wrap">
-      <img
-        className="hero-photo"
-        src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1800&auto=format&fit=crop&q=80"
-        alt="Happy people driving"
-      />
-      <div className="hero-overlay" />
+
+      {/* ── 3D Model replaces static background image ─────────────────── */}
+      <div style={{
+        position: "absolute", inset: 0,
+        zIndex: 0, overflow: "hidden",
+      }}>
+        <iframe
+          title="2021 Volkswagen Golf GTI"
+          src="https://sketchfab.com/models/cb1187bfbee447b394759315bcbcbb4d/embed?autostart=1&ui_infos=0&ui_controls=1&ui_stop=0&transparent=0&bg_color=03050f"
+          frameBorder="0"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowFullScreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            pointerEvents: "auto",
+          }}
+        />
+        {/* Gradient vignette so text stays readable over the 3D scene */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(100deg, rgba(3,5,15,0.82) 0%, rgba(3,5,15,0.45) 55%, rgba(3,5,15,0.2) 100%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }} />
+      </div>
+
       <div className="grid-lines" />
 
       {/* Background blobs */}
-      <div className="blob" style={{ width: 750, height: 750, background: "#1e3a8a", top: -250, left: -200, opacity: 0.4 }} />
-      <div className="blob" style={{ width: 450, height: 450, background: "#0ea5e9", bottom: -60, right: "12%", opacity: 0.14 }} />
-      <div className="blob" style={{ width: 280, height: 280, background: "#6366f1", top: "25%", left: "30%", opacity: 0.1 }} />
+      <div className="blob" style={{ width: 750, height: 750, background: "#1e3a8a", top: -250, left: -200, opacity: 0.3 }} />
+      <div className="blob" style={{ width: 450, height: 450, background: "#0ea5e9", bottom: -60, right: "12%", opacity: 0.1 }} />
+      <div className="blob" style={{ width: 280, height: 280, background: "#6366f1", top: "25%", left: "30%", opacity: 0.07 }} />
 
       <div className="hero-inner" style={{
         position: "relative", zIndex: 2,
@@ -46,7 +70,7 @@ export default function HeroSection({ hero, card }) {
           </h1>
 
           <p style={{
-            color: "#3a5278", fontSize: 16.5, lineHeight: 1.8,
+            color: "#b8cce8", fontSize: 16.5, lineHeight: 1.8,
             maxWidth: 460, marginBottom: 38,
             opacity: 0,
             animation: "fadeUp 0.8s 0.3s cubic-bezier(.16,1,.3,1) forwards",
@@ -62,8 +86,23 @@ export default function HeroSection({ hero, card }) {
             <button className="btn-primary" style={{ fontSize: 16, padding: "17px 36px", borderRadius: 15 }}>
               {hero.cta}
             </button>
-            <span style={{ color: "#253555", fontSize: 13, fontWeight: 500 }}>{hero.ctaSub}</span>
+            <span style={{ color: "#6a8aaa", fontSize: 13, fontWeight: 500 }}>{hero.ctaSub}</span>
           </div>
+
+          {/* Sketchfab credit — small and unobtrusive */}
+          <p style={{
+            marginTop: 28, fontSize: 11, color: "#253555", fontWeight: 500,
+            opacity: 0, animation: "fadeUp 0.8s 0.55s cubic-bezier(.16,1,.3,1) forwards",
+          }}>
+            3D model:{" "}
+            <a
+              href="https://sketchfab.com/3d-models/2021-volkswagen-golf-gti-cb1187bfbee447b394759315bcbcbb4d"
+              target="_blank" rel="nofollow noreferrer"
+              style={{ color: "#1CAAD9", fontWeight: 700 }}
+            >
+              2021 VW Golf GTI
+            </a>{" "}by OUTPISTON on Sketchfab
+          </p>
         </div>
 
         {/* Booking card */}
@@ -71,13 +110,13 @@ export default function HeroSection({ hero, card }) {
           <BookingCard card={card} />
         </div>
       </div>
-      {/* Navbar button */}
-      
+
       {/* Bottom fade */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
         background: "linear-gradient(to bottom,transparent,#03050f)",
         zIndex: 2,
+        pointerEvents: "none",
       }} />
     </section>
   );
