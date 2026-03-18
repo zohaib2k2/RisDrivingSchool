@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
 import { Link } from "react-router-dom";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const PRICE_PER_LESSON = 65;
@@ -24,8 +25,7 @@ const PAGE_T = {
     numLessonsLabel: "Number of lessons:",
     totalLabel: "Total:",
     pricePerLesson: "Price per lesson:",
-    examFee: "Exam fee:",
-    reExam: "Re-examination:",
+    
     reExamValue: "Free!",
     howManyTitle: "How many driving lessons do you need?",
     howManyP: "Everyone learns to drive at their own pace. At FIS Driving School we take your level and experience into account. On average, students with us need between 20 and 30 driving lessons to succeed — but this varies per person. Here's a rough estimate:",
@@ -41,7 +41,7 @@ const PAGE_T = {
     inclusions: [
       { icon: "🎓", title: "Certified Instructors", desc: "All our instructors are CBR-certified and experienced in preparing students for the Dutch road exam." },
       { icon: "🚗", title: "Modern Dual-Control Cars", desc: "Drive in comfortable, air-conditioned vehicles with dual controls so you always feel safe." },
-      { icon: "🛡️", title: "Free Re-Exam Guarantee", desc: "Didn't pass first time? No stress — we cover your re-examination fee worth €350." },
+    //   { icon: "🛡️", title: "Free Re-Exam Guarantee", desc: "Didn't pass first time? No stress — we cover your re-examination fee worth €350." },
       { icon: "💳", title: "Klarna Installments", desc: "Spread the cost with zero-interest Klarna payments. Start learning today, pay as you go." },
     ],
   },
@@ -53,8 +53,7 @@ const PAGE_T = {
     totalLabel: "Totaal:",
     pricePerLesson: "Prijs per les:",
     examFee: "Examenkosten:",
-    reExam: "Herexamen:",
-    reExamValue: "Gratis!",
+    
     howManyTitle: "Hoeveel rijlessen heeft u nodig?",
     howManyP: "Iedereen leert rijden in zijn eigen tempo. Bij FIS Rijschool houden we rekening met uw niveau en ervaring. Gemiddeld hebben studenten bij ons tussen de 20 en 30 rijlessen nodig — maar dit verschilt per persoon. Hier is een globale schatting:",
     learnerTypes: [
@@ -122,6 +121,8 @@ export default function LessonCalculatorPage({ lang, onLangChange }) {
     }}>
       <Banner items={t.banner} />
       <Navbar nav={t.nav} lang={lang} onLangChange={onLangChange} />
+
+      <WhatsAppButton/>
 
       {/* ── HERO + CALCULATOR ─────────────────────────────────────────────── */}
       <div style={{

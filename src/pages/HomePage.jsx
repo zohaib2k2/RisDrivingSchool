@@ -6,6 +6,7 @@ import StatsSection from "../components/StatsSection";
 import FeaturesSection from "../components/FeaturesSection";
 import CtaSection from "../components/CtaSection";
 import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function HomePage({ lang, onLangChange }) {
   const t = T[lang];
@@ -18,6 +19,7 @@ export default function HomePage({ lang, onLangChange }) {
       minHeight: "100vh",
       overflowX: "hidden",
     }}>
+     
       <Banner items={t.banner} />
       <Navbar nav={t.nav} lang={lang} onLangChange={onLangChange} />
       <HeroSection hero={t.hero} card={t.card} />
@@ -26,6 +28,7 @@ export default function HomePage({ lang, onLangChange }) {
       <div className="divider" />
       <CtaSection cta2={t.cta2} lang={lang} />
       <Footer footer={t.footer} />
+      <WhatsAppButton />
     </div>
   );
 }

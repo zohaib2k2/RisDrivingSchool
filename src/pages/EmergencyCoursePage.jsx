@@ -270,7 +270,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
         alignItems: "center",
         overflow: "hidden",
         padding: "72px 44px",
-      }}>
+      }} className="flex flex-col md:flex-row">
         {/* Background image */}
         <img
           src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1800&auto=format&fit=crop&q=80"
@@ -294,7 +294,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
           maxWidth: 1200, margin: "0 auto", width: "100%",
           display: "flex", alignItems: "center",
           justifyContent: "space-between", gap: 52,
-        }}>
+        }} className="flex flex-col md:flex-row">
           {/* Left copy */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Stars */}
@@ -344,6 +344,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
           </div>
 
           {/* Right: booking card */}
+          {/* Make bookingcard flex  */}
           <div style={{ opacity: 0, animation: "fadeUp 0.9s 0.2s cubic-bezier(.16,1,.3,1) forwards" }}>
             <EmergencyBookingCard card={p.card} />
           </div>

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
 import { Link } from "react-router-dom";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 // ── Bilingual page copy ───────────────────────────────────────────────────────
 const PAGE_T = {
@@ -28,7 +29,7 @@ const PAGE_T = {
 
     closingTitle: "FIS: the driving school built for you",
     closingP: "Now you know exactly who we are. Ready to take the wheel? Book your free trial lesson and join the thousands who've already passed with FIS.",
-    closingBtn: "Book Free Trial →",
+    closingBtn: "Book a Trial Lesson →",
 
     privacyTitle: "Privacy & Legal",
     privacyP: "You can download our general terms and conditions and privacy statement directly using the links below.",
@@ -63,7 +64,7 @@ const PAGE_T = {
 
     closingTitle: "FIS: de rijschool die bij u past",
     closingP: "Nu weet u precies wie wij zijn. Klaar om achter het stuur te kruipen? Boek uw gratis proefles en sluit u aan bij de duizenden die al geslaagd zijn met FIS.",
-    closingBtn: "Proefles boeken →",
+    closingBtn: "Boek een proefles →",
 
     privacyTitle: "Privacy & Juridisch",
     privacyP: "U kunt onze algemene voorwaarden en privacyverklaring direct downloaden via de onderstaande links.",
@@ -155,6 +156,7 @@ export default function AboutPage({ lang, onLangChange }) {
       minHeight: "100vh",
       overflowX: "hidden",
     }}>
+      <WhatsAppButton />
       <Banner items={t.banner} />
       <Navbar nav={t.nav} lang={lang} onLangChange={onLangChange} />
 
@@ -283,7 +285,7 @@ export default function AboutPage({ lang, onLangChange }) {
         <SectionDivider />
 
         {/* Privacy & Policy */}
-        <FadeIn>
+        {/* <FadeIn>
           <div>
             <h2 style={{ fontSize: "clamp(20px,2.8vw,32px)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.08, marginBottom: 14 }}>
               {p.privacyTitle}
@@ -315,7 +317,7 @@ export default function AboutPage({ lang, onLangChange }) {
               ))}
             </div>
           </div>
-        </FadeIn>
+        </FadeIn> */}
 
       </div>
 

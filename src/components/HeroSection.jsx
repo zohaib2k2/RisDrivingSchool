@@ -71,7 +71,8 @@ export default function HeroSection({ hero, card }) {
           <BookingCard card={card} />
         </div>
       </div>
-
+      {/* Navbar button */}
+      
       {/* Bottom fade */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0, height: 140,

@@ -26,14 +26,14 @@ export default function Footer({ footer }) {
               }}>F</div>
               <div>
                 <div style={{ fontWeight: 900, fontSize: 15.5, letterSpacing: "-0.03em" }}>
-                  FIS <span style={{ color: "#60a5fa" }}>Driving</span>
+                  FIS <span style={{ color: "#fffced" }}>Driving</span>
                 </div>
-                <div style={{ fontSize: 9, color: "#0f1e38", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                <div style={{ fontSize: 9, color: "#fffced", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
                   School
                 </div>
               </div>
             </div>
-            <p style={{ color: "#162035", fontSize: 13 }}>{footer.tag}</p>
+            <p style={{ color: "#37deff", fontSize: 13 }}>{footer.tag}</p>
           </div>
 
           {/* Links */}
@@ -42,9 +42,9 @@ export default function Footer({ footer }) {
               <a
                 key={i}
                 href="#"
-                style={{ color: "#162035", fontSize: 13, textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
+                style={{ color: "#e8eeff", fontSize: 13, textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
                 onMouseOver={e => e.target.style.color = "#60a5fa"}
-                onMouseOut={e => e.target.style.color = "#162035"}
+                onMouseOut={e => e.target.style.color = "#e8eeff"}
               >
                 {l}
               </a>

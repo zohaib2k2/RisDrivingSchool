@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "/public/logos/logo_v1.png";
+import logo from "/public/logos/logo_v2.jpeg";
 
 const NAV_LINKS = [
   { key: "emergency",   to: "/RisDrivingSchool/emergency"   },
@@ -104,7 +104,7 @@ export default function Navbar({ nav, lang, onLangChange }) {
             <img
               src={logo}
               alt="FIS Driving School"
-              style={{ width: 40, height: 40, borderRadius: 11, objectFit: "contain" }}
+              style={{ width: 70, height: 50, borderRadius: 11, objectFit: "contain" }}
               onError={e => {
                 e.currentTarget.style.display = "none";
                 e.currentTarget.nextSibling.style.display = "flex";
@@ -262,6 +262,7 @@ export default function Navbar({ nav, lang, onLangChange }) {
           </div>
         </div>
       </nav>
+      
     </>
   );
 }

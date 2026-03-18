@@ -1,10 +1,56 @@
 import { useState } from "react";
 
+// ── Shared input style ────────────────────────────────────────────────────────
+const INP = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "11px 14px",
+  fontSize: 13.5,
+  fontWeight: 500,
+  color: "#c8d8f0",
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(59,130,246,0.22)",
+  borderRadius: 10,
+  outline: "none",
+  fontFamily: "inherit",
+  transition: "border-color 0.2s",
+};
+
+function Field({ placeholder, value, onChange, type = "text", children, style = {} }) {
+  const [focused, setFocused] = useState(false);
+  return children ? (
+    <select
+      value={value}
+      onChange={onChange}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      style={{ ...INP, borderColor: focused ? "rgba(96,165,250,0.6)" : "rgba(59,130,246,0.22)", colorScheme: "dark", ...style }}
+    >
+      {children}
+    </select>
+  ) : (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      style={{ ...INP, borderColor: focused ? "rgba(96,165,250,0.6)" : "rgba(59,130,246,0.22)", colorScheme: "dark", ...style }}
+    />
+  );
+}
+
 export default function BookingCard({ card }) {
-  const [zip, setZip] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [done, setDone] = useState(false);
+  const [zip,       setZip]       = useState("");
+  const [address,   setAddress]   = useState("");
+  const [apartment, setApartment] = useState("");
+  const [mobile,    setMobile]    = useState("");
+  const [date,      setDate]      = useState("");
+  const [time,      setTime]      = useState("");
+  const [done,      setDone]      = useState(false);
+
+  const canSubmit = zip && address && mobile && date && time;
 
   return (
     <div className="bcard">
@@ -38,45 +84,75 @@ export default function BookingCard({ card }) {
         {card.fTitle}
       </p>
 
+      {/* ── Form / Success ─────────────────────────────────────────────── */}
       {done ? (
         <div style={{
           background: "linear-gradient(135deg,rgba(30,64,175,0.18),rgba(14,165,233,0.08))",
           border: "1px solid rgba(59,130,246,0.25)",
-          borderRadius: 18,
-          padding: "32px 20px",
-          textAlign: "center",
-          position: "relative",
-          zIndex: 1,
+          borderRadius: 18, padding: "32px 20px",
+          textAlign: "center", position: "relative", zIndex: 1,
         }}>
           <div style={{ fontSize: 42, marginBottom: 10 }}>🎉</div>
           <p className="gradient-text" style={{ fontWeight: 900, fontSize: 19, marginBottom: 6 }}>{card.successTitle}</p>
-          <p style={{ color: "#334970", fontSize: 13 }}>{card.successSub}</p>
-          <p style={{ color: "#253555", fontSize: 12, marginTop: 10 }}>{zip} · {date} · {time}</p>
+          <p style={{ color: "#334970", fontSize: 13, marginBottom: 10 }}>{card.successSub}</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 3, color: "#253555", fontSize: 12 }}>
+            <span>{zip}{apartment ? `, ${apartment}` : ""} · {address}</span>
+            <span>📱 {mobile}</span>
+            <span>📅 {date} · {time}</span>
+          </div>
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 11, position: "relative", zIndex: 1 }}>
-          <input
-            className="inp"
-            placeholder={card.zip}
-            value={zip}
-            onChange={e => setZip(e.target.value)}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, position: "relative", zIndex: 1 }}>
+
+          {/* Postcode + Apartment row */}
+          <div style={{ display: "flex", gap: 8 }}>
+            <Field
+              placeholder={card.zip}
+              value={zip}
+              onChange={e => setZip(e.target.value)}
+              style={{ flex: 1 }}
+            />
+            <Field
+              placeholder={card.apartment}
+              value={apartment}
+              onChange={e => setApartment(e.target.value)}
+              style={{ flex: 1 }}
+            />
+          </div>
+
+          {/* Street address */}
+          <Field
+            placeholder={card.address}
+            value={address}
+            onChange={e => setAddress(e.target.value)}
           />
-          <input
+
+          {/* Mobile number */}
+          <Field
+            type="tel"
+            placeholder={card.mobile}
+            value={mobile}
+            onChange={e => setMobile(e.target.value)}
+          />
+
+          {/* Date */}
+          <Field
             type="date"
-            className="inp"
             value={date}
             onChange={e => setDate(e.target.value)}
-            min={new Date().toISOString().split("T")[0]}
             style={{ colorScheme: "dark" }}
           />
-          <select className="inp" value={time} onChange={e => setTime(e.target.value)}>
+
+          {/* Time select */}
+          <Field value={time} onChange={e => setTime(e.target.value)}>
             <option value="">{card.timePh}</option>
             {card.times.map((o, i) => <option key={i} value={o}>{o}</option>)}
-          </select>
+          </Field>
+
           <button
             className="btn-primary"
             style={{ marginTop: 4, fontSize: 14.5, padding: "14px 20px" }}
-            disabled={!zip || !date || !time}
+            disabled={!canSubmit}
             onClick={() => setDone(true)}
           >
             {card.btn}

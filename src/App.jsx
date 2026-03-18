@@ -8,9 +8,10 @@ import EmergencyCoursePage from "./pages/EmergencyCoursePage";
 import LessonCalculatorPage from "./pages/LessonCalculatorPage";
 
 export default function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("nl");
  
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         <Route path="/RisDrivingSchool" element={<HomePage lang={lang} onLangChange={setLang} />} />
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/RisDrivingSchool/calculator" element={<LessonCalculatorPage lang={lang} onLangChange={setLang} />} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
  

@@ -4,6 +4,7 @@ import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 // ── Text tokens ───────────────────────────────────────────────────────────────
 const H   = "#f0f4ff";
@@ -64,7 +65,7 @@ const PAGE_T = {
         crashOriginal: 975,
         lessons: 15,
         isMostChosen: false,
-        features: ["15 driving lessons",  "Flexible Klarna payment"],
+        features: ["15 driving lessons" ],
       },
       {
         id: "emergency",
@@ -157,7 +158,7 @@ const PAGE_T = {
         crashOriginal: 975,
         lessons: 15,
         isMostChosen: false,
-        features: ["15 rijlessen",  "Flexibele Klarna-betaling"],
+        features: ["15 rijlessen"]  
       },
       {
         id: "emergency",
@@ -170,7 +171,7 @@ const PAGE_T = {
         lessons: 15,
         isMostChosen: true,
         alwaysCrash: true,
-        features: ["15 rijlessen",  "Prioriteitsplanning", "Flexibele Klarna-betaling"],
+        features: ["15 rijlessen",  "Prioriteitsplanning"],
       },
       {
         id: "advanced",
@@ -182,7 +183,7 @@ const PAGE_T = {
         crashOriginal: 1800,
         lessons: 25,
         isMostChosen: false,
-        features: ["25 rijlessen", "Flexibele Klarna-betaling"],
+        features: ["25 rijlessen", "Prioriteitsplanning"],
       },
       {
         id: "premium",
@@ -194,7 +195,7 @@ const PAGE_T = {
         crashOriginal: 2610,
         lessons: 35,
         isMostChosen: false,
-        features: ["35 rijlessen",  "Vaste instructeur", "Flexibele Klarna-betaling"],
+        features: ["35 rijlessen",  "Vaste instructeur"],
       },
     ],
   },
@@ -276,6 +277,8 @@ function PackageCard({ pkg, p, delay }) {
             whiteSpace: "nowrap",
           }}>{p.mostChosen}</div>
         )}
+
+        <WhatsAppButton />
 
         {/* Discount badge */}
         <div style={{ marginBottom: 16, marginTop: featured ? 14 : 0 }}>
