@@ -20,7 +20,7 @@ const PAGE_T = {
     areasCovered: "Areas covered",
     trialTitle: "Start with a no-obligation trial lesson",
     trialP: "Not sure where to begin? Our trial lesson is a completely pressure-free first ride. You'll get a feel for the car, meet your instructor, and decide together how many lessons you'll realistically need for your exam. It's the easiest way to kick things off — and it costs you nothing upfront.",
-    trialBtn: "Book Free Trial →",
+    trialBtn: "Book a Trial lesson →",
     packagesBtn: "View Packages →",
   },
   nl: {
@@ -36,7 +36,7 @@ const PAGE_T = {
     areasCovered: "Gedekte wijken",
     trialTitle: "Begin met een vrijblijvende proefles",
     trialP: "Weet u niet waar u moet beginnen? Onze proefles is een volledig vrijblijvende eerste rit. U maakt kennis met de auto, ontmoet uw instructeur en beslist samen hoeveel lessen u nodig heeft voor uw examen. De makkelijkste start — zonder kosten vooraf.",
-    trialBtn: "Proefles boeken →",
+    trialBtn: " Proefles boeken →",
     packagesBtn: "Pakketten bekijken →",
   },
 };
@@ -92,7 +92,7 @@ const CARD_DATA = {
     tagSub: "Valid until 31 May 2026",
     h: "Up to €400 off",
     hSub: "your lesson package",
-    perks: ["Start immediately, pay afterwards", "Free trial lesson, zero obligation", "Re-exam guarantee worth €350", "€6 discount on every lesson"],
+    perks: ["Start immediately, pay afterwards", "Trial lesson, zero obligation", "Re-exam guarantee worth €350", "€6 discount on every lesson"],
     fTitle: "Book Your Trial Lesson",
     zip: "Your postcode",
     date: "Pick a date",

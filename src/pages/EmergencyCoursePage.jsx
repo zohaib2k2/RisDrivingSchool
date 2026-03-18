@@ -59,8 +59,8 @@ const PAGE_T = {
     ],
     // CTA
     ctaTitle: "Ready to get your licence fast?",
-    ctaP: "Book your free, no-obligation trial lesson today and get started on the road to your licence.",
-    ctaBtn: "Book Free Trial →",
+    ctaP: "Book your lesson, no-obligation trial lesson today and get started on the road to your licence.",
+    ctaBtn: "Book a Trial →",
     ctaSecondary: "View all packages →",
   },
   nl: {
@@ -105,8 +105,8 @@ const PAGE_T = {
       { icon: "📍", title: "Lokale instructeurs", desc: "Instructeurs in Zoetermeer en Rijswijk die elke weg van uw examenroute kennen." },
     ],
     ctaTitle: "Klaar om snel uw rijbewijs te halen?",
-    ctaP: "Boek vandaag uw gratis, vrijblijvende proefles en zet de eerste stap naar uw rijbewijs.",
-    ctaBtn: "Proefles boeken →",
+    ctaP: "Boek uw vrijblijvende proefles en zet de eerste stap naar uw rijbewijs.",
+    ctaBtn: "Proefles Boeken →",
     ctaSecondary: "Alle pakketten bekijken →",
   },
 };

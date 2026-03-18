@@ -26,7 +26,7 @@ const PAGE_T = {
     totalLabel: "Total:",
     pricePerLesson: "Price per lesson:",
     
-    reExamValue: "Free!",
+    reExamValue: "",
     howManyTitle: "How many driving lessons do you need?",
     howManyP: "Everyone learns to drive at their own pace. At FIS Driving School we take your level and experience into account. On average, students with us need between 20 and 30 driving lessons to succeed — but this varies per person. Here's a rough estimate:",
     learnerTypes: [
@@ -36,7 +36,7 @@ const PAGE_T = {
       { label: "Starting from scratch", note: "(no prior experience): 40 – 50 lessons" },
     ],
     howManyFooter: "Not sure where you stand? Our free trial lesson is the best way to find out. Your instructor will assess your level and give you a personalised recommendation.",
-    trialBtn: "Book Free Trial →",
+    trialBtn: "Book a Trial →",
     pricingTitle: "What's included in every package?",
     inclusions: [
       { icon: "🎓", title: "Certified Instructors", desc: "All our instructors are CBR-certified and experienced in preparing students for the Dutch road exam." },
@@ -68,7 +68,7 @@ const PAGE_T = {
     inclusions: [
       { icon: "🎓", title: "Gecertificeerde instructeurs", desc: "Al onze instructeurs zijn CBR-gecertificeerd en hebben ruime ervaring met het voorbereiden op het rijexamen." },
       { icon: "🚗", title: "Moderne duo-controlauto's", desc: "Rij in comfortabele, airconditioned voertuigen met dubbele bediening zodat u altijd veilig zit." },
-      { icon: "🛡️", title: "Gratis herexamengarantie", desc: "Niet geslaagd de eerste keer? Geen zorgen — wij vergoeden uw herexamen t.w.v. €350." },
+      // { icon: "🛡️", title: "Gratis herexamengarantie", desc: "Niet geslaagd de eerste keer? Geen zorgen — wij vergoeden uw herexamen t.w.v. €350." },
       { icon: "💳", title: "Klarna-termijnen", desc: "Spreid de kosten met renteloze Klarna-betalingen. Begin vandaag met leren, betaal per les." },
     ],
   },
@@ -323,7 +323,7 @@ export default function LessonCalculatorPage({ lang, onLangChange }) {
               </h3>
               <p style={{ color: B, fontSize: 15, lineHeight: 1.75, maxWidth: 440, margin: 0 }}>
                 {lang === "en"
-                  ? "Now that you know the cost, pick the package that's right for you — or start with a completely free trial lesson."
+                  ? "Now that you know the cost, pick the package that's right for you — or start with a completely new trial lesson."
                   : "Nu u de kosten kent, kiest u het pakket dat bij u past — of begin met een volledig gratis proefles."}
               </p>
             </div>

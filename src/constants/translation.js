@@ -8,7 +8,7 @@ export const T = {
       h1b: "Confidence.",
       h1c: "Pay Later.",
       sub: "The Netherlands' most trusted driving school. Start tomorrow, pay in installments — your license is closer than you think.",
-      cta: "Book Free Trial →",
+      cta: "Book a Trial →",
       ctaSub: "No obligation. No upfront payment.",
     },
     card: {
@@ -16,7 +16,7 @@ export const T = {
       tagSub: "Valid until 31 May 2026",
       h: "Up to €400 off",
       hSub: "your lesson package",
-      perks: ["Start immediately, pay afterwards", "Free trial lesson, zero obligation", "Re-exam guarantee worth €350", "€6 discount on every lesson"],
+      perks: ["Start immediately, pay afterwards", "Trial lesson, zero obligation", "Re-exam guarantee worth €350", "€6 discount on every lesson"],
       fTitle: "Schedule Your Trial Lesson",
       zip: "Postcode",
       address: "Street address",
@@ -56,7 +56,7 @@ export const T = {
       h1b: "Zelfvertrouwen.",
       h1c: "Betaal Later.",
       sub: "De meest vertrouwde rijschool van Nederland. Begin morgen, betaal in termijnen — uw rijbewijs is dichterbij dan u denkt.",
-      cta: "Gratis Proefles →",
+      cta: "Plan uw proefles →",
       ctaSub: "Vrijblijvend. Geen aanbetaling.",
     },
     card: {
