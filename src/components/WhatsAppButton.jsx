@@ -1,7 +1,7 @@
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/+31626293999?text=Hello, I would like to inquire and book an appointment"
+      href="https://wa.me/+31611839652?text=Hello, I would like to inquire and book an appointment"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contact us on WhatsApp"

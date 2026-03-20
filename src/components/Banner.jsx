@@ -1,10 +1,8 @@
 export default function Banner({ items }) {
   return (
-    <div style={{
-      background: "linear-gradient(90deg,#0c1f6e,#1d4ed8,#0c1f6e)",
-      padding: "9px 0",
-      overflow: "hidden",
-    }}>
+    <div 
+      className="bg-[linear-gradient(90deg,#0c1f6e,#1d4ed8,#0c1f6e)] py-[9px] overflow-hidden"
+      >
       <div className="marquee-inner">
         {[...Array(3)].flatMap(() => items).map((item, i) => (
           <span
