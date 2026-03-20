@@ -1,15 +1,17 @@
 import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from '@react-three/fiber'
-
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import BookingCard from "./BookingCard";
 
+// Vite resolves this at build time → hashed URL like /assets/golf_gti-Cx3kP9aB.glb
+// Works correctly on any deployment (Vercel, Netlify, GitHub Pages, etc.)
+import golfGtiUrl from "/public/models/2021_Volkswagen_Golf_GTI.glb?url";
+
 // ── 3D Car model ──────────────────────────────────────────────────────────────
 function CarModel() {
-  const { scene } = useGLTF("/RisDrivingSchool/public/models/2021_Volkswagen_Golf_GTI.glb");
+  const { scene } = useGLTF(golfGtiUrl);
   const ref = useRef();
 
-  // Slow auto-rotate; stops when user grabs the canvas (OrbitControls takes over)
   useFrame((_, delta) => {
     if (ref.current) ref.current.rotation.y += delta * 0.18;
   });
@@ -144,8 +146,6 @@ export default function HeroSection({ hero, card }) {
             display: "flex", alignItems: "center", gap: 6,
             opacity: 0, animation: "fadeUp 0.8s 0.56s cubic-bezier(.16,1,.3,1) forwards",
           }}>
-            <span style={{ fontSize: 14 }}>🖱️</span>
-            Drag to rotate · Scroll to zoom
           </p>
         </div>
 
@@ -168,5 +168,5 @@ export default function HeroSection({ hero, card }) {
   );
 }
 
-// Pre-load so the model is ready before the hero mounts
-useGLTF.preload("/RisDrivingSchool/public/models/2021_Volkswagen_Golf_GTI.glb");
+// Pre-load using the same hashed Vite asset URL
+useGLTF.preload(golfGtiUrl);
