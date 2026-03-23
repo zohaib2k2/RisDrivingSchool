@@ -43,7 +43,7 @@ const PAGE_T = {
     // Stats
     stats: [
       { n: "45,824", l: "Graduates", sub: "Thousands of students pass FIS every year." },
-      { n: "98%", l: "High-success rate", sub: "Re-exam guarantee worth €350 if needed." },
+      { n: "98%", l: "High-success rate", sub: "Our students pass with confidence." },
     //   { n: "€6", l: "Discount per lesson", sub: "Always the best prices — save up to €400." },
     ],
     // Why section
@@ -53,7 +53,7 @@ const PAGE_T = {
       { icon: "⚡", title: "Start tomorrow", desc: "No waiting lists. We schedule your first lesson as quickly as possible — often the very next day." },
       { icon: "📅", title: "Multiple lessons per week", desc: "Build skills fast with frequent sessions tailored to your availability and learning pace." },
       { icon: "🎯", title: "Exam-focused training", desc: "Every lesson is structured around the CBR exam criteria so nothing is left to chance." },
-      { icon: "🛡️", title: "Re-exam guarantee", desc: "Don't pass first time? We cover your re-examination fee worth €350 — at no extra cost." },
+      { icon: "🏆", title: "Expert instructors", desc: "Our instructors know the local roads and exam routes inside out — giving you the best possible preparation." },
       // { icon: "💳", title: "Pay with Klarna", desc: "Spread the cost over manageable installments with zero interest. Start now, pay later." },
       { icon: "📍", title: "Local instructors", desc: "Instructors based in Zoetermeer and Rijswijk who know every road on your exam route." },
     ],
@@ -91,7 +91,7 @@ const PAGE_T = {
     },
     stats: [
       { n: "45.824", l: "Geslaagden", sub: "Duizenden studenten slagen elk jaar bij FIS." },
-      { n: "98%", l: "Hoog slagingspercentage", sub: "Herexamengarantie t.w.v. €350 indien nodig." },
+      { n: "98%", l: "Hoog slagingspercentage", sub: "Onze studenten slagen met vertrouwen." },
     //   { n: "€6", l: "Korting per les", sub: "Altijd de beste prijzen — bespaar tot €400." },
     ],
     whyTitle: "Waarom kiezen voor de FIS spoedcursus?",
@@ -100,7 +100,7 @@ const PAGE_T = {
       { icon: "⚡", title: "Begin morgen", desc: "Geen wachtlijsten. We plannen uw eerste les zo snel mogelijk in — vaak al de volgende dag." },
       { icon: "📅", title: "Meerdere lessen per week", desc: "Bouw snel vaardigheden op met frequente sessies afgestemd op uw beschikbaarheid." },
       { icon: "🎯", title: "Examengerichte training", desc: "Elke les is opgebouwd rond de CBR-examencriteria zodat niets aan het toeval wordt overgelaten." },
-      { icon: "🛡️", title: "Herexamengarantie", desc: "Niet geslaagd de eerste keer? Wij vergoeden uw herexamen t.w.v. €350 — zonder extra kosten." },
+      { icon: "🏆", title: "Expert instructeurs", desc: "Onze instructeurs kennen de lokale wegen en examenroutes op hun duimpje — voor de best mogelijke voorbereiding." },
       // { icon: "💳", title: "Betalen met Klarna", desc: "Spreid de kosten in beheersbare termijnen zonder rente. Begin nu, betaal later." },
       { icon: "📍", title: "Lokale instructeurs", desc: "Instructeurs in Zoetermeer en Rijswijk die elke weg van uw examenroute kennen." },
     ],
@@ -246,7 +246,7 @@ function WhyCard({ item, delay }) {
   );
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
+// ── Page ─────────────────────────────────────────────────────���────────────────
 export default function EmergencyCoursePage({ lang, onLangChange }) {
   const t = T[lang];
   const p = PAGE_T[lang];

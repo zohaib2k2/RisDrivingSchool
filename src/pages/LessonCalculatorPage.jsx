@@ -35,7 +35,7 @@ const PAGE_T = {
       { label: "Average student", note: "(moving forward consistently): 30 – 40 lessons" },
       { label: "Starting from scratch", note: "(no prior experience): 40 – 50 lessons" },
     ],
-    howManyFooter: "Not sure where you stand? Our free trial lesson is the best way to find out. Your instructor will assess your level and give you a personalised recommendation.",
+    howManyFooter: "Not sure where you stand? Our trial lesson is the best way to find out. Your instructor will assess your level and give you a personalised recommendation.",
     trialBtn: "Book a Trial →",
     pricingTitle: "What's included in every package?",
     inclusions: [
@@ -62,7 +62,7 @@ const PAGE_T = {
       { label: "Gemiddelde student", note: "(gestaag vooruitgang): 30 – 40 lessen" },
       { label: "Helemaal nieuw", note: "(geen ervaring): 40 – 50 lessen" },
     ],
-    howManyFooter: "Weet u niet waar u staat? Onze gratis proefles is de beste manier om erachter te komen. Uw instructeur beoordeelt uw niveau en geeft een persoonlijk advies.",
+    howManyFooter: "Weet u niet waar u staat? Onze proefles is de beste manier om erachter te komen. Uw instructeur beoordeelt uw niveau en geeft een persoonlijk advies.",
     trialBtn: "Proefles boeken →",
     pricingTitle: "Wat zit er in elk pakket?",
     inclusions: [
@@ -324,7 +324,7 @@ export default function LessonCalculatorPage({ lang, onLangChange }) {
               <p style={{ color: B, fontSize: 15, lineHeight: 1.75, maxWidth: 440, margin: 0 }}>
                 {lang === "en"
                   ? "Now that you know the cost, pick the package that's right for you — or start with a completely new trial lesson."
-                  : "Nu u de kosten kent, kiest u het pakket dat bij u past — of begin met een volledig gratis proefles."}
+                  : "Nu u de kosten kent, kiest u het pakket dat bij u past — of begin met een proefles."}
               </p>
             </div>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", position: "relative", zIndex: 1 }}>

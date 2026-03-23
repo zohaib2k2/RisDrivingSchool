@@ -17,12 +17,12 @@ const PAGE_T = {
     eyebrow: "Transparent pricing, zero surprises",
     heroTitle: "Driving",
     heroAccent: "Packages",
-    heroSub: "Choose the package that fits your pace and budget. Every package includes a free trial lesson, re-exam guarantee, and flexible Klarna payment.",
+    heroSub: "Choose the package that fits your pace and budget. Every package includes a trial lesson and flexible Klarna payment.",
     mostChosen: "⭐ Most chosen",
     discount: "OFF",
     wasLabel: "was",
     lessons: "driving lessons",
-    reExam: "Free re-exam guarantee worth €350",
+    reExam: "",
     crashToggle: "Add crash course",
     crashAlways: "Always a crash course",
     planBtn: "Plan your trial lesson →",
@@ -31,7 +31,7 @@ const PAGE_T = {
     manual: "Manual",
     crashCourseLabel: "Crash course",
     trialTitle: "How does it work?",
-    trialSub: "At FIS Driving School, every journey starts with a free trial lesson. Here's what to expect.",
+    trialSub: "At FIS Driving School, every journey starts with a trial lesson. Here's what to expect.",
     steps: [
       {
         n: "1",
@@ -110,12 +110,12 @@ const PAGE_T = {
     eyebrow: "Transparante prijzen, geen verrassingen",
     heroTitle: "Rij-",
     heroAccent: "pakketten",
-    heroSub: "Kies het pakket dat bij uw tempo en budget past. Elk pakket bevat een gratis proefles, herexamengarantie en flexibele Klarna-betaling.",
+    heroSub: "Kies het pakket dat bij uw tempo en budget past. Elk pakket bevat een proefles en flexibele Klarna-betaling.",
     mostChosen: "⭐ Meest gekozen",
     discount: "KORTING",
     wasLabel: "was",
     lessons: "rijlessen",
-    reExam: "Gratis herexamengarantie t.w.v. €350",
+    reExam: "",
     crashToggle: "Spoedcursus toevoegen",
     crashAlways: "Altijd een spoedcursus",
     planBtn: "Plan uw proefles →",
@@ -124,7 +124,7 @@ const PAGE_T = {
     manual: "Handgeschakeld",
     crashCourseLabel: "Spoedcursus",
     trialTitle: "Hoe werkt het?",
-    trialSub: "Bij FIS Rijschool begint elke reis met een gratis proefles. Dit kunt u verwachten.",
+    trialSub: "Bij FIS Rijschool begint elke reis met een proefles. Dit kunt u verwachten.",
     steps: [
       {
         n: "1",
@@ -524,8 +524,8 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
               </h3>
               <p style={{ color: B, fontSize: 15, lineHeight: 1.75, maxWidth: 460, margin: 0 }}>
                 {lang === "en"
-                  ? "Book your free trial lesson today — no obligation, no upfront payment. Pick a time that works for you."
-                  : "Boek vandaag uw gratis proefles — vrijblijvend, geen aanbetaling. Kies een tijd die u schikt."}
+                  ? "Book your trial lesson today — no obligation, no upfront payment. Pick a time that works for you."
+                  : "Boek vandaag uw proefles — vrijblijvend, geen aanbetaling. Kies een tijd die u schikt."}
               </p>
             </div>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", position: "relative", zIndex: 1 }}>

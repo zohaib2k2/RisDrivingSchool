@@ -21,14 +21,14 @@ const PAGE_T = {
 
     uniqueTitle: "What makes us different?",
     uniqueP1: "Beyond quality instruction, we've built our school around your convenience. Lessons are available seven days a week — mornings, afternoons, and evenings — so you can fit driving around work, study, or family life. Your instructor will pick you up from your door, meaning zero wasted time commuting.",
-    uniqueP2: "We offer a completely free trial lesson with no obligation, a range of flexible lesson packages, and an emergency crash course for those who need to pass quickly. And with our Klarna integration, you can spread the cost with zero interest — start learning today, pay as you go.",
+    uniqueP2: "We offer a trial lesson with no obligation, a range of flexible lesson packages, and an emergency crash course for those who need to pass quickly. And with our Klarna integration, you can spread the cost with zero interest — start learning today, pay as you go.",
 
     activeTitle: "Active across South Holland",
     activeP: "FIS currently operates in Zoetermeer and Rijswijk, with instructors who know every road, roundabout, and tricky junction in their area. We're expanding, so if you don't see your city yet — keep an eye out.",
     activeLink: "View all locations →",
 
     closingTitle: "FIS: the driving school built for you",
-    closingP: "Now you know exactly who we are. Ready to take the wheel? Book your free trial lesson and join the thousands who've already passed with FIS.",
+    closingP: "Now you know exactly who we are. Ready to take the wheel? Book a trial lesson and join the thousands who've already passed with FIS.",
     closingBtn: "Book a Trial Lesson →",
 
     privacyTitle: "Privacy & Legal",
@@ -56,14 +56,14 @@ const PAGE_T = {
 
     uniqueTitle: "Wat maakt ons anders?",
     uniqueP1: "Naast kwalitatieve instructie hebben we onze rijschool gebouwd rond uw gemak. Lessen zijn zeven dagen per week beschikbaar — 's ochtends, 's middags en 's avonds — zodat u rijden kunt combineren met werk, studie of gezinsleven. Uw instructeur haalt u op aan de deur, zodat u geen tijd verliest aan reizen.",
-    uniqueP2: "We bieden een volledig gratis proefles zonder verplichtingen, diverse flexibele lespakketten en een spoedcursus voor wie snel wil slagen. Met onze Klarna-integratie spreidt u de kosten zonder rente — begin vandaag met leren, betaal per les.",
+    uniqueP2: "We bieden een proefles zonder verplichtingen, diverse flexibele lespakketten en een spoedcursus voor wie snel wil slagen. Met onze Klarna-integratie spreidt u de kosten zonder rente — begin vandaag met leren, betaal per les.",
 
     activeTitle: "Actief in Zuid-Holland",
     activeP: "FIS is momenteel actief in Zoetermeer en Rijswijk, met instructeurs die elke weg, rotonde en lastige kruising in hun gebied kennen. We breiden uit — dus ziet u uw stad er nog niet bij? Houd ons in de gaten.",
     activeLink: "Bekijk alle locaties →",
 
     closingTitle: "FIS: de rijschool die bij u past",
-    closingP: "Nu weet u precies wie wij zijn. Klaar om achter het stuur te kruipen? Boek uw gratis proefles en sluit u aan bij de duizenden die al geslaagd zijn met FIS.",
+    closingP: "Nu weet u precies wie wij zijn. Klaar om achter het stuur te kruipen? Boek uw proefles en sluit u aan bij de duizenden die al geslaagd zijn met FIS.",
     closingBtn: "Boek een proefles →",
 
     privacyTitle: "Privacy & Juridisch",
