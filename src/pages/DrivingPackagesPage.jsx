@@ -136,7 +136,7 @@ const PAGE_T = {
       },
       {
         q: "How much does a trial lesson cost?",
-        a: "A trial lesson costs €55 once. If you decide to continue lessons, this €45 will be deducted as a discount from your lesson package.",
+        a: "A trial lesson costs €55 once. If you decide to continue lessons, this €55 will be deducted as a discount from your lesson package.",
       },
       {
         q: "How long does a trial lesson last?",
@@ -603,8 +603,8 @@ function PriceSummarySection({ p, lang }) {
           }}>
             <p style={{ color: B, fontSize: 13.5, lineHeight: 1.8, margin: 0 }}>
               {lang === "en"
-                ? "Your trial lesson costs only €45. If you continue, this amount is deducted in full as a discount from your package."
-                : "Uw proefles kost slechts €45. Gaat u door? Dan wordt dit bedrag volledig als korting verrekend in uw lespakket."}
+                ? "Your trial lesson costs only €55. If you continue, this amount is deducted in full as a discount from your package."
+                : "Uw proefles kost slechts €55. Gaat u door? Dan wordt dit bedrag volledig als korting verrekend in uw lespakket."}
             </p>
           </div>
 
