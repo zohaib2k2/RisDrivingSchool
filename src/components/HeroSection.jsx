@@ -1,11 +1,23 @@
-import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Suspense, useRef, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import BookingCard from "./BookingCard";
 
 // Vite resolves this at build time → hashed URL like /assets/golf_gti-Cx3kP9aB.glb
 // Works correctly on any deployment (Vercel, Netlify, GitHub Pages, etc.)
 import golfGtiUrl from "/public/models/2021_Volkswagen_Golf_GTI.glb?url";
+
+// ── Responsive camera ─────────────────────────────────────────────────────────
+function CameraRig() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const mobile = size.width < 768;
+    camera.fov = mobile ? 72 : 42;
+    camera.position.set(mobile ? 4 : 4, mobile ? 2.5 : 1.5, mobile ? 10 : 6);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width]);
+  return null;
+}
 
 // ── 3D Car model ──────────────────────────────────────────────────────────────
 function CarModel() {
@@ -40,6 +52,7 @@ export default function HeroSection({ hero, card }) {
           shadows
           gl={{ antialias: true, alpha: false }}
         >
+          <CameraRig />
           <ambientLight intensity={0.35} />
           <directionalLight
             position={[8, 12, 6]}
