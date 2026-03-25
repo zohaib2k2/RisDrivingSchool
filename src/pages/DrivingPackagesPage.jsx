@@ -129,6 +129,22 @@ const PAGE_T = {
         features: ["50 driving lessons","Dedicated instructor", "Flexible  payment"],
       }
     ],
+    faq: [
+      {
+        q: "Why a trial lesson?",
+        a: "A trial lesson is ideal for determining the level of your driving ability. During the trial lesson, the driving instructor can indicate what is going well and how many lessons he or she thinks you need. Plan right away a trial lesson!",
+      },
+      {
+        q: "How much does a trial lesson cost?",
+        a: "A trial lesson costs €55 once. If you decide to continue lessons, this €45 will be deducted as a discount from your lesson package.",
+      },
+      {
+        q: "How long does a trial lesson last?",
+        a: "A trial lesson lasts 1 hour at FIS Driving School.",
+      },
+    ],
+    faqTitle: "Frequently Asked Questions",
+    faqEyebrow: "Got questions?",
   },
   nl: {
     eyebrow: "Transparante prijzen, geen verrassingen",
@@ -247,6 +263,22 @@ const PAGE_T = {
       },
 
     ],
+    faq: [
+      {
+        q: "Waarom een proefles?",
+        a: "Een proefles is ideaal om uw rijvaardigheid te bepalen. Tijdens de proefles kan de rijinstructeur aangeven wat goed gaat en hoeveel lessen hij of zij denkt dat u nodig heeft. Plan direct een proefles in!",
+      },
+      {
+        q: "Hoeveel kost een proefles?",
+        a: "Een proefles kost eenmalig €55. Besluit u door te gaan met lessen, dan wordt dit bedrag als korting in mindering gebracht op uw lespakket.",
+      },
+      {
+        q: "Hoe lang duurt een proefles?",
+        a: "Een proefles duurt 1 uur bij FIS Rijschool.",
+      },
+    ],
+    faqTitle: "Veelgestelde Vragen",
+    faqEyebrow: "Heeft u vragen?",
   },
 };
 
@@ -603,6 +635,90 @@ function PriceSummarySection({ p, lang }) {
   );
 }
 
+// ── FAQ accordion ─────────────────────────────────────────────────────────────
+function FAQItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  const bodyRef = useRef(null);
+
+  return (
+    <div style={{
+      border: "1px solid rgba(59,130,246,0.14)",
+      borderRadius: 14,
+      overflow: "hidden",
+      transition: "border-color 0.25s",
+      ...(open && { borderColor: "rgba(96,165,250,0.38)" }),
+    }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: "100%", display: "flex", alignItems: "center",
+          justifyContent: "space-between", gap: 16,
+          padding: "20px 24px", background: "transparent",
+          border: "none", cursor: "pointer", fontFamily: "inherit",
+          textAlign: "left",
+        }}
+      >
+        <span style={{ fontSize: 15, fontWeight: 700, color: H, lineHeight: 1.4 }}>{q}</span>
+        <div style={{
+          width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+          background: open
+            ? "linear-gradient(135deg,#1e40af,#0ea5e9)"
+            : "rgba(59,130,246,0.1)",
+          border: open ? "none" : "1px solid rgba(59,130,246,0.25)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "background 0.25s, transform 0.25s",
+          transform: open ? "rotate(45deg)" : "rotate(0deg)",
+        }}>
+          <span style={{ fontSize: 18, color: open ? "#fff" : "#60a5fa", lineHeight: 1, marginTop: -1 }}>+</span>
+        </div>
+      </button>
+
+      {/* Slide-down answer */}
+      <div
+        ref={bodyRef}
+        style={{
+          maxHeight: open ? bodyRef.current?.scrollHeight + "px" : "0px",
+          overflow: "hidden",
+          transition: "max-height 0.35s cubic-bezier(0.4,0,0.2,1)",
+        }}
+      >
+        <p style={{
+          margin: 0, padding: "0 24px 20px",
+          fontSize: 14, color: B, lineHeight: 1.85,
+          borderTop: "1px solid rgba(59,130,246,0.08)",
+          paddingTop: 16,
+        }}>{a}</p>
+      </div>
+    </div>
+  );
+}
+
+function FAQSection({ p }) {
+  return (
+    <FadeIn>
+      <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 44px 96px" }}>
+        <div style={{ marginBottom: 44 }}>
+          <div className="eyebrow-pill" style={{ display: "inline-flex", marginBottom: 18 }}>
+            <div className="eyebrow-dot" />
+            <span style={{ color: H }}>{p.faqEyebrow}</span>
+          </div>
+          <h2 style={{
+            fontSize: "clamp(26px,4vw,48px)", fontWeight: 900,
+            letterSpacing: "-0.04em", lineHeight: 1.06,
+            color: H, margin: 0,
+          }}>{p.faqTitle}</h2>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {p.faq.map((item, i) => (
+            <FAQItem key={i} q={item.q} a={item.a} />
+          ))}
+        </div>
+      </div>
+    </FadeIn>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function DrivingPackagesPage({ lang, onLangChange }) {
   const t = T[lang];
@@ -766,6 +882,9 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
           </div>
         </FadeIn>
       </div>
+      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
+      <FAQSection p={p} />
+
        <WhatsAppButton />
       <div className="divider" />
       <Footer footer={t.footer} />
