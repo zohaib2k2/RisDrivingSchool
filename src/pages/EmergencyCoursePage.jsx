@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { T } from "../constants/translation";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
@@ -9,6 +10,17 @@ import FadeIn from "../components/FadeIn";
 const H = "#f0f4ff";
 const B = "#b8cce8";
 const D = "#6a8aaa";
+
+function useIsMobile() {
+  const [m, setM] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const h = (e) => setM(e.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
+  }, []);
+  return m;
+}
 
 // ── Bilingual copy ────────────────────────────────────────────────────────────
 const PAGE_T = {
@@ -250,6 +262,8 @@ function WhyCard({ item, delay }) {
 export default function EmergencyCoursePage({ lang, onLangChange }) {
   const t = T[lang];
   const p = PAGE_T[lang];
+  const m = useIsMobile();
+  const navigate = useNavigate();
 
   return (
     <div style={{
@@ -265,12 +279,12 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section style={{
         position: "relative",
-        minHeight: 560,
+        minHeight: m ? "auto" : 560,
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        padding: "72px 44px",
-      }} className="flex flex-col md:flex-row">
+        padding: m ? "52px 20px 72px" : "72px 44px",
+      }}>
         {/* Background image */}
         <img
           src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1800&auto=format&fit=crop&q=80"
@@ -292,9 +306,12 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
         <div style={{
           position: "relative", zIndex: 3,
           maxWidth: 1200, margin: "0 auto", width: "100%",
-          display: "flex", alignItems: "center",
-          justifyContent: "space-between", gap: 52,
-        }} className="flex flex-col md:flex-row">
+          display: "flex",
+          flexDirection: m ? "column" : "row",
+          alignItems: m ? "stretch" : "center",
+          justifyContent: "space-between",
+          gap: m ? 36 : 52,
+        }}>
           {/* Left copy */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Stars */}
@@ -360,13 +377,15 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
         }}>
           <div style={{
             maxWidth: 1200, margin: "0 auto",
-            display: "grid", gridTemplateColumns: "repeat(3,1fr)",
-            padding: "0 44px",
+            display: "grid",
+            gridTemplateColumns: m ? "1fr" : "repeat(2,1fr)",
+            padding: m ? "0 20px" : "0 44px",
           }}>
             {p.stats.map((s, i) => (
               <div key={i} style={{
-                padding: "36px 24px",
-                borderRight: i < 2 ? "1px solid rgba(59,130,246,0.1)" : "none",
+                padding: m ? "24px 16px" : "36px 24px",
+                borderRight: (!m && i < p.stats.length - 1) ? "1px solid rgba(59,130,246,0.1)" : "none",
+                borderBottom: (m && i < p.stats.length - 1) ? "1px solid rgba(59,130,246,0.1)" : "none",
                 display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
               }}>
                 <div style={{
@@ -388,7 +407,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
       </FadeIn>
 
       {/* ── WHY SECTION ───────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 44px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: m ? "52px 20px" : "80px 44px" }}>
         <FadeIn>
           <div style={{ marginBottom: 52 }}>
             <div className="eyebrow-pill" style={{ display: "inline-flex", marginBottom: 18 }}>
@@ -402,7 +421,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
           </div>
         </FadeIn>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 18 }}>
+        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "repeat(3,1fr)", gap: 18 }}>
           {p.whyCards.map((item, i) => (
             <WhyCard key={i} item={item} delay={i * 0.07} />
           ))}
@@ -410,12 +429,12 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
       </div>
 
       {/* ── BOTTOM CTA ────────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 44px 90px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: m ? "0 20px 64px" : "0 44px 90px" }}>
         <FadeIn>
           <div style={{
             background: "linear-gradient(135deg,rgba(30,64,175,0.2),rgba(14,165,233,0.08))",
             border: "1px solid rgba(59,130,246,0.22)",
-            borderRadius: 22, padding: "52px 48px",
+            borderRadius: 22, padding: m ? "32px 24px" : "52px 48px",
             display: "flex", alignItems: "center", justifyContent: "space-between",
             flexWrap: "wrap", gap: 28, position: "relative", overflow: "hidden",
             textAlign: "left",
@@ -429,7 +448,7 @@ export default function EmergencyCoursePage({ lang, onLangChange }) {
             </div>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
               <button className="btn-primary" style={{ fontSize: 15, padding: "15px 32px", borderRadius: 13 }}>{p.ctaBtn}</button>
-              <button className="btn-outline" style={{ fontSize: 14, padding: "15px 26px", borderRadius: 13 }}>{p.ctaSecondary}</button>
+              <button className="btn-outline" style={{ fontSize: 14, padding: "15px 26px", borderRadius: 13 }} onClick={() => navigate("/RisDrivingSchool/packages")}>{p.ctaSecondary}</button>
             </div>
           </div>
         </FadeIn>

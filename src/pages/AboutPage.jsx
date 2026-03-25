@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { T } from "../constants/translation";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
@@ -80,6 +81,18 @@ const PAGE_T = {
   },
 };
 
+// ── Mobile breakpoint hook ─────────────────────────────────────────────────────
+function useIsMobile() {
+  const [m, setM] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const h = (e) => setM(e.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
+  }, []);
+  return m;
+}
+
 // ── Decorative section divider ────────────────────────────────────────────────
 function SectionDivider() {
   return (
@@ -147,6 +160,7 @@ function ValueCard({ icon, title, desc, delay }) {
 export default function AboutPage({ lang, onLangChange }) {
   const t = T[lang];
   const p = PAGE_T[lang];
+  const m = useIsMobile();
 
   return (
     <div style={{
@@ -163,7 +177,7 @@ export default function AboutPage({ lang, onLangChange }) {
       {/* ── PAGE HERO ─────────────────────────────────────────────────────── */}
       <div style={{
         position: "relative",
-        padding: "72px 44px 56px",
+        padding: m ? "48px 20px 40px" : "72px 44px 56px",
         borderBottom: "1px solid rgba(59,130,246,0.07)",
         overflow: "hidden",
       }}>
@@ -184,7 +198,7 @@ export default function AboutPage({ lang, onLangChange }) {
       </div>
 
       {/* ── MAIN CONTENT ──────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: 860, margin: "0 auto", padding: "64px 44px 80px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: m ? "40px 20px 60px" : "64px 44px 80px" }}>
 
         {/* Intro */}
         <FadeIn>
@@ -206,7 +220,7 @@ export default function AboutPage({ lang, onLangChange }) {
         </FadeIn>
 
         {/* Values grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, margin: "36px 0" }}>
+        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "repeat(2, 1fr)", gap: 16, margin: "36px 0" }}>
           {p.values.map((v, i) => (
             <ValueCard key={i} icon={v.icon} title={v.title} desc={v.desc} delay={i * 0.07} />
           ))}
@@ -252,7 +266,7 @@ export default function AboutPage({ lang, onLangChange }) {
               ))}
             </div>
 
-            <InlineLink to="/locations">{p.activeLink}</InlineLink>
+            <InlineLink to="/RisDrivingSchool/locations">{p.activeLink}</InlineLink>
           </div>
         </FadeIn>
 
@@ -264,7 +278,7 @@ export default function AboutPage({ lang, onLangChange }) {
             background: "linear-gradient(135deg, rgba(30,64,175,0.12), rgba(14,165,233,0.06))",
             border: "1px solid rgba(59,130,246,0.15)",
             borderRadius: 22,
-            padding: "44px 40px",
+            padding: m ? "28px 22px" : "44px 40px",
             textAlign: "center",
             position: "relative",
             overflow: "hidden",

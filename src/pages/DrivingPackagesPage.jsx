@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { T } from "../constants/translation";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
@@ -10,6 +11,18 @@ import WhatsAppButton from "../components/WhatsAppButton";
 const H   = "#f0f4ff";
 const B   = "#b8cce8";
 const DIM = "#6a8aaa";
+
+// ── Mobile breakpoint hook ─────────────────────────────────────────────────────
+function useIsMobile() {
+  const [m, setM] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const h = (e) => setM(e.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
+  }, []);
+  return m;
+}
 
 // ── Bilingual copy ────────────────────────────────────────────────────────────
 const PAGE_T = {
@@ -493,19 +506,20 @@ function StepCard({ step, delay }) {
 
 // ── Price Summary Section ──────────────────────────────────────────────────────
 function PriceSummarySection({ p, lang }) {
+  const m = useIsMobile();
   return (
     <FadeIn>
       <div style={{
         display: "flex", gap: 32, alignItems: "flex-start", flexWrap: "wrap",
-        maxWidth: 1240, margin: "0 auto", padding: "80px 44px",
+        maxWidth: 1240, margin: "0 auto", padding: m ? "48px 20px" : "80px 44px",
       }}>
 
         {/* ── Left: price table ─────────────────────────────────────────── */}
         <div style={{
-          flex: "1 1 480px", position: "relative", overflow: "hidden",
+          flex: m ? "1 1 100%" : "1 1 480px", position: "relative", overflow: "hidden",
           background: "linear-gradient(160deg, rgba(14,22,58,0.98), rgba(8,12,32,0.99))",
           border: "1px solid rgba(59,130,246,0.18)",
-          borderRadius: 22, padding: "40px 36px",
+          borderRadius: 22, padding: m ? "28px 20px" : "40px 36px",
         }}>
           {/* BG glow */}
           <div style={{ position: "absolute", top: -80, right: -80, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,64,175,0.14), transparent 65%)", pointerEvents: "none" }} />
@@ -572,7 +586,7 @@ function PriceSummarySection({ p, lang }) {
         </div>
 
         {/* ── Right: how it works + CTA ──────────────────────────────────── */}
-        <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: 22 }}>
+        <div style={{ flex: m ? "1 1 100%" : "1 1 300px", display: "flex", flexDirection: "column", gap: 22 }}>
           <h2 style={{ fontSize: "clamp(20px,2.4vw,28px)", fontWeight: 900, letterSpacing: "-0.03em", color: H, marginBottom: 4, lineHeight: 1.15 }}>
             {p.trialTitle}
           </h2>
@@ -630,6 +644,89 @@ function PriceSummarySection({ p, lang }) {
           </div>
         </div>
 
+      </div>
+    </FadeIn>
+  );
+}
+
+// ── Calculator panel ──────────────────────────────────────────────────────────
+function CalculatorPanel({ lang, m }) {
+  const navigate = useNavigate();
+  return (
+    <FadeIn>
+      <div style={{
+        maxWidth: 1240, margin: "0 auto",
+        padding: m ? "0 20px 56px" : "0 44px 72px",
+      }}>
+        <div
+          onClick={() => navigate("/RisDrivingSchool/calculator")}
+          style={{
+            position: "relative", overflow: "hidden",
+            background: "linear-gradient(135deg, rgba(20,35,90,0.96), rgba(10,18,52,0.99))",
+            border: "1px solid rgba(96,165,250,0.22)",
+            borderRadius: 22,
+            padding: m ? "32px 24px" : "44px 52px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 24,
+            cursor: "pointer",
+            transition: "border-color 0.25s, transform 0.25s, box-shadow 0.25s",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = "rgba(96,165,250,0.5)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 20px 60px rgba(59,130,246,0.18)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = "rgba(96,165,250,0.22)";
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        >
+          {/* BG glows */}
+          <div style={{ position: "absolute", top: -80, left: -80, width: 340, height: 340, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,64,175,0.18), transparent 65%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", bottom: -60, right: -60, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(14,165,233,0.1), transparent 65%)", pointerEvents: "none" }} />
+
+          {/* Left: icon + text */}
+          <div style={{ display: "flex", alignItems: "center", gap: 22, position: "relative", zIndex: 1, flexWrap: "wrap" }}>
+            <div style={{
+              width: 60, height: 60, borderRadius: 16, flexShrink: 0,
+              background: "linear-gradient(135deg,#1e40af,#0ea5e9)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 26, boxShadow: "0 0 24px rgba(14,165,233,0.4)",
+            }}>🧮</div>
+            <div>
+              <p style={{ fontSize: 12, fontWeight: 800, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 6px" }}>
+                {lang === "en" ? "Lesson calculator" : "Lescalculator"}
+              </p>
+              <h3 style={{ fontSize: "clamp(18px,2.2vw,26px)", fontWeight: 900, letterSpacing: "-0.03em", color: H, margin: "0 0 8px", lineHeight: 1.15 }}>
+                {lang === "en" ? "Not sure how many lessons you need?" : "Weet u niet hoeveel lessen u nodig heeft?"}
+              </h3>
+              <p style={{ fontSize: 14, color: B, margin: 0, lineHeight: 1.7, maxWidth: 480 }}>
+                {lang === "en"
+                  ? "Use our free lesson calculator to get a personalised estimate based on your experience and goals."
+                  : "Gebruik onze lescalculator voor een persoonlijke schatting op basis van uw ervaring en doelen."}
+              </p>
+            </div>
+          </div>
+
+          {/* Right: CTA */}
+          <div style={{ position: "relative", zIndex: 1, flexShrink: 0 }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              background: "linear-gradient(90deg,#1e40af,#0ea5e9)",
+              color: "#fff", fontSize: 14, fontWeight: 800,
+              padding: "14px 26px", borderRadius: 13,
+              boxShadow: "0 4px 20px rgba(14,165,233,0.35)",
+              letterSpacing: "0.01em",
+            }}>
+              {lang === "en" ? "Open calculator" : "Open calculator"}
+              <span style={{ fontSize: 16 }}>→</span>
+            </div>
+          </div>
+        </div>
       </div>
     </FadeIn>
   );
@@ -694,9 +791,10 @@ function FAQItem({ q, a }) {
 }
 
 function FAQSection({ p }) {
+  const m = useIsMobile();
   return (
     <FadeIn>
-      <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 44px 96px" }}>
+      <div style={{ maxWidth: 820, margin: "0 auto", padding: m ? "0 20px 64px" : "0 44px 96px" }}>
         <div style={{ marginBottom: 44 }}>
           <div className="eyebrow-pill" style={{ display: "inline-flex", marginBottom: 18 }}>
             <div className="eyebrow-dot" />
@@ -724,6 +822,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
   const t = T[lang];
   const p = PAGE_T[lang];
 
+  const m = useIsMobile();
   const scrollRef = useRef(null);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
 
@@ -756,7 +855,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
       {/* ── PAGE HERO ──────────────────────────────────────────────────────── */}
       <div style={{
         position: "relative",
-        padding: "72px 44px 56px",
+        padding: m ? "48px 20px 36px" : "72px 44px 56px",
         borderBottom: "1px solid rgba(59,130,246,0.08)",
         overflow: "hidden",
       }}>
@@ -776,7 +875,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
       </div>
 
       {/* ── PACKAGES SCROLL ───────────────────────────────────────────────── */}
-      <div style={{ padding: "72px 44px 0" }}>
+      <div style={{ padding: m ? "40px 16px 0" : "72px 44px 0" }}>
         <div
           ref={scrollRef}
           onMouseDown={handleMouseDown}
@@ -795,7 +894,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
           }}
         >
           {p.packages.map((pkg, i) => (
-            <div key={pkg.id} style={{ minWidth: 300, flexShrink: 0 }}>
+            <div key={pkg.id} style={{ minWidth: m ? 270 : 300, flexShrink: 0 }}>
               <PackageCard pkg={pkg} p={p} delay={i * 0.08} />
             </div>
           ))}
@@ -820,7 +919,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
       <PriceSummarySection p={p} lang={lang} />
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "88px 44px 96px" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: m ? "56px 20px 64px" : "88px 44px 96px" }}>
         {/* Section header */}
         <FadeIn>
           <div style={{ marginBottom: 52 }}>
@@ -838,7 +937,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
         </FadeIn>
 
         {/* Steps grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "repeat(2, 1fr)", gap: 20 }}>
           {p.steps.map((step, i) => (
             <StepCard key={i} step={step} delay={i * 0.08} />
           ))}
@@ -851,7 +950,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
             background: "linear-gradient(135deg, rgba(30,64,175,0.18), rgba(14,165,233,0.08))",
             border: "1px solid rgba(59,130,246,0.22)",
             borderRadius: 22,
-            padding: "44px 40px",
+            padding: m ? "28px 22px" : "44px 40px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -884,6 +983,9 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
       </div>
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
       <FAQSection p={p} />
+
+      {/* ── CALCULATOR PANEL ──────────────────────────────────────────────── */}
+      <CalculatorPanel lang={lang} m={m} />
 
        <WhatsAppButton />
       <div className="divider" />
