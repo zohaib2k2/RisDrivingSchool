@@ -459,6 +459,150 @@ function StepCard({ step, delay }) {
   );
 }
 
+// ── Price Summary Section ──────────────────────────────────────────────────────
+function PriceSummarySection({ p, lang }) {
+  return (
+    <FadeIn>
+      <div style={{
+        display: "flex", gap: 32, alignItems: "flex-start", flexWrap: "wrap",
+        maxWidth: 1240, margin: "0 auto", padding: "80px 44px",
+      }}>
+
+        {/* ── Left: price table ─────────────────────────────────────────── */}
+        <div style={{
+          flex: "1 1 480px", position: "relative", overflow: "hidden",
+          background: "linear-gradient(160deg, rgba(14,22,58,0.98), rgba(8,12,32,0.99))",
+          border: "1px solid rgba(59,130,246,0.18)",
+          borderRadius: 22, padding: "40px 36px",
+        }}>
+          {/* BG glow */}
+          <div style={{ position: "absolute", top: -80, right: -80, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,64,175,0.14), transparent 65%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", bottom: -60, left: -60, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(14,165,233,0.06), transparent 65%)", pointerEvents: "none" }} />
+
+          <h2 style={{ fontSize: "clamp(20px,2.4vw,28px)", fontWeight: 900, letterSpacing: "-0.03em", color: H, marginBottom: 10, lineHeight: 1.15, position: "relative", zIndex: 1 }}>
+            {lang === "en" ? "What do driving lessons cost?" : "Wat kosten rijlessen?"}
+          </h2>
+          <p style={{ color: B, fontSize: 14, lineHeight: 1.75, marginBottom: 28, maxWidth: 400, position: "relative", zIndex: 1 }}>
+            {lang === "en"
+              ? "After your trial lesson you receive personal advice. These are the rates per number of lessons."
+              : "Na uw proefles ontvangt u persoonlijk lesadvies. Dit zijn de tarieven per aantal rijlessen."}
+          </p>
+
+          {/* Table header */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.2fr 1fr", padding: "8px 14px", marginBottom: 6 }}>
+              {[
+                lang === "en" ? "Lessons" : "Lessen",
+                lang === "en" ? "Normal" : "Normaal",
+                lang === "en" ? "Now" : "Nu",
+                lang === "en" ? "Save" : "Bespaar",
+              ].map((col, i) => (
+                <span key={i} style={{
+                  fontSize: 11, fontWeight: 800, color: DIM,
+                  textTransform: "uppercase", letterSpacing: "0.07em",
+                  textAlign: i === 0 ? "left" : "center",
+                }}>{col}</span>
+              ))}
+            </div>
+
+            {/* Table rows */}
+            {p.packages.map((pkg, i) => {
+              const saving = pkg.originalPrice - pkg.price;
+              const hot = pkg.isMostChosen;
+              return (
+                <div key={pkg.id} style={{
+                  display: "grid", gridTemplateColumns: "1fr 1fr 1.2fr 1fr",
+                  padding: "13px 14px", marginBottom: 5, borderRadius: 12,
+                  background: hot
+                    ? "linear-gradient(90deg, rgba(30,64,175,0.28), rgba(14,165,233,0.12))"
+                    : i % 2 === 0 ? "rgba(255,255,255,0.03)" : "transparent",
+                  border: hot ? "1px solid rgba(96,165,250,0.28)" : "1px solid transparent",
+                  transition: "background 0.2s",
+                }}>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: H }}>{pkg.lessons}</span>
+                  <span style={{ fontSize: 13, color: DIM, fontWeight: 500, textDecoration: "line-through", textAlign: "center", alignSelf: "center" }}>
+                    €{pkg.originalPrice.toLocaleString()}
+                  </span>
+                  <span style={{ fontSize: 17, fontWeight: 900, color: "#60a5fa", textAlign: "center", letterSpacing: "-0.02em" }}>
+                    €{pkg.price.toLocaleString()}
+                  </span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "#34d399", textAlign: "center" }}>
+                    €{saving.toLocaleString()}
+                  </span>
+                </div>
+              );
+            })}
+
+            <p style={{ fontSize: 12, color: DIM, marginTop: 18, textAlign: "center", letterSpacing: "0.03em" }}>
+              {lang === "en" ? "Price per number of lessons" : "Prijs per aantal rijlessen"}
+            </p>
+          </div>
+        </div>
+
+        {/* ── Right: how it works + CTA ──────────────────────────────────── */}
+        <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: 22 }}>
+          <h2 style={{ fontSize: "clamp(20px,2.4vw,28px)", fontWeight: 900, letterSpacing: "-0.03em", color: H, marginBottom: 4, lineHeight: 1.15 }}>
+            {p.trialTitle}
+          </h2>
+
+          {/* Steps list */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+            {p.steps.map((step) => (
+              <div key={step.n} style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                <div style={{
+                  width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
+                  background: "linear-gradient(135deg,#1e40af,#0ea5e9)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 11, fontWeight: 900, color: "#fff",
+                  boxShadow: "0 0 12px rgba(14,165,233,0.35)",
+                }}>{step.n}</div>
+                <span style={{ fontSize: 14, color: B, lineHeight: 1.65, paddingTop: 4, fontWeight: 600 }}>
+                  {step.title}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Trial note */}
+          <div style={{
+            background: "rgba(59,130,246,0.07)",
+            border: "1px solid rgba(59,130,246,0.15)",
+            borderRadius: 14, padding: "18px 20px",
+          }}>
+            <p style={{ color: B, fontSize: 13.5, lineHeight: 1.8, margin: 0 }}>
+              {lang === "en"
+                ? "Your trial lesson costs only €45. If you continue, this amount is deducted in full as a discount from your package."
+                : "Uw proefles kost slechts €45. Gaat u door? Dan wordt dit bedrag volledig als korting verrekend in uw lespakket."}
+            </p>
+          </div>
+
+          {/* CTA button */}
+          <button className="btn-primary" style={{ fontSize: 15, padding: "16px 28px", borderRadius: 13 }}>
+            {p.planBtn}
+          </button>
+
+          {/* Klarna blurb */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+              {lang === "en" ? "Spread payment" : "Gespreide betaling"}
+            </span>
+            {[
+              lang === "en" ? "Pay in instalments without interest" : "Betaal in termijnen zonder rente",
+              lang === "en" ? "Non-binding & flexible. You can always cancel." : "Vrijblijvend & flexibel. U kunt altijd annuleren.",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ color: "#34d399", fontSize: 13, fontWeight: 700 }}>✓</span>
+                <span style={{ fontSize: 13, color: B }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </FadeIn>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function DrivingPackagesPage({ lang, onLangChange }) {
   const t = T[lang];
@@ -555,6 +699,9 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
           </div>
         </FadeIn>
       </div>
+
+      {/* ── PRICE SUMMARY + TRIAL CTA ─────────────────────────────────────── */}
+      <PriceSummarySection p={p} lang={lang} />
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "88px 44px 96px" }}>
