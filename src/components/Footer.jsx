@@ -1,3 +1,5 @@
+import logo from "/public/logos/logo_v2.jpeg";
+
 export default function Footer({ footer }) {
   return (
     <footer style={{
@@ -17,13 +19,7 @@ export default function Footer({ footer }) {
           {/* Logo + tagline */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-              <div style={{
-                width: 36, height: 36, borderRadius: 10,
-                background: "linear-gradient(135deg,#1e40af,#0ea5e9)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontWeight: 900, fontSize: 17, color: "#fff",
-                boxShadow: "0 0 18px rgba(59,130,246,0.4)",
-              }}>F</div>
+              <img src={logo} alt="FIS logo" style={{ width: 36, height: 36, borderRadius: 10, objectFit: "cover", boxShadow: "0 0 18px rgba(59,130,246,0.4)" }} />
               <div>
                 <div style={{ fontWeight: 900, fontSize: 15.5, letterSpacing: "-0.03em" }}>
                   FIS <span style={{ color: "#fffced" }}>Driving</span>

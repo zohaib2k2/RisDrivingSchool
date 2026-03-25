@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BookingCard from "../components/BookingCard";
 import FadeIn from "../components/FadeIn";
+import logo from "/public/logos/logo_v2.jpeg";
 
 // ── Bilingual page-level copy ────────────────────────────────────────────────
 const PAGE_T = {
@@ -146,23 +147,23 @@ function LocationCard({ loc, index, areasCoveredLabel }) {
           </div>
           <div>
             <h3 style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.03em", marginBottom: 3, color: "#e8eeff" }}>{loc.name}</h3>
-            <span style={{ fontSize: 12.5, color: "#3b5280", fontWeight: 600, letterSpacing: "0.04em" }}>{loc.tagline}</span>
+            <span style={{ fontSize: 12.5, color: "#7a9cc0", fontWeight: 600, letterSpacing: "0.04em" }}>{loc.tagline}</span>
           </div>
         </div>
 
-        <p style={{ color: "#2c4060", fontSize: 14, lineHeight: 1.85, marginBottom: 22 }}>{loc.description}</p>
+        <p style={{ color: "#a0b8d8", fontSize: 14, lineHeight: 1.85, marginBottom: 22 }}>{loc.description}</p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 24 }}>
           {loc.highlights.map((h, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 18, height: 18, borderRadius: "50%", flexShrink: 0, background: "linear-gradient(135deg,#1e40af,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, color: "#fff", fontWeight: 900 }}>✓</div>
-              <span style={{ fontSize: 13.5, color: "#607090", fontWeight: 500 }}>{h}</span>
+              <span style={{ fontSize: 13.5, color: "#94afd4", fontWeight: 500 }}>{h}</span>
             </div>
           ))}
         </div>
 
         <div style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.09)", borderRadius: 14, padding: "18px 20px" }}>
-          <p style={{ fontSize: 12, fontWeight: 700, color: "#3b5280", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>
+          <p style={{ fontSize: 12, fontWeight: 700, color: "#7a9cc0", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>
             {areasCoveredLabel}
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 12px" }}>
@@ -202,7 +203,7 @@ export default function LessonLocationsPage({ lang, onLangChange }) {
             {p.heroTitle}<br />
             <span className="gradient-text">{p.heroTitleAccent}</span>
           </h1>
-          <p style={{ color: "#2c4060", fontSize: 16, lineHeight: 1.75, maxWidth: 520 }}>{p.heroSub}</p>
+          <p style={{ color: "#a0b8d8", fontSize: 16, lineHeight: 1.75, maxWidth: 520 }}>{p.heroSub}</p>
         </div>
       </div>
 
@@ -215,15 +216,15 @@ export default function LessonLocationsPage({ lang, onLangChange }) {
             <FadeIn>
               <div style={{ marginBottom: 48 }}>
                 <h2 style={{ fontSize: "clamp(22px,2.8vw,34px)", fontWeight: 900, letterSpacing: "-0.04em", marginBottom: 14, lineHeight: 1.1 }}>{p.whyTitle}</h2>
-                <p style={{ color: "#2c4060", fontSize: 15, lineHeight: 1.85, marginBottom: 14 }}>{p.whyP1}</p>
-                <p style={{ color: "#2c4060", fontSize: 15, lineHeight: 1.85 }}>{p.whyP2}</p>
+                <p style={{ color: "#a0b8d8", fontSize: 15, lineHeight: 1.85, marginBottom: 14 }}>{p.whyP1}</p>
+                <p style={{ color: "#a0b8d8", fontSize: 15, lineHeight: 1.85 }}>{p.whyP2}</p>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.05}>
               <div style={{ marginBottom: 32 }}>
                 <h2 style={{ fontSize: "clamp(20px,2.5vw,30px)", fontWeight: 900, letterSpacing: "-0.04em", marginBottom: 10, lineHeight: 1.1 }}>{p.coverageTitle}</h2>
-                <p style={{ color: "#2c4060", fontSize: 15, lineHeight: 1.85 }}>{p.coverageP}</p>
+                <p style={{ color: "#a0b8d8", fontSize: 15, lineHeight: 1.85 }}>{p.coverageP}</p>
               </div>
             </FadeIn>
 
@@ -236,7 +237,7 @@ export default function LessonLocationsPage({ lang, onLangChange }) {
             <FadeIn>
               <div>
                 <h2 style={{ fontSize: "clamp(20px,2.5vw,30px)", fontWeight: 900, letterSpacing: "-0.04em", marginBottom: 12, lineHeight: 1.1 }}>{p.trialTitle}</h2>
-                <p style={{ color: "#2c4060", fontSize: 15, lineHeight: 1.85, marginBottom: 18 }}>{p.trialP}</p>
+                <p style={{ color: "#a0b8d8", fontSize: 15, lineHeight: 1.85, marginBottom: 18 }}>{p.trialP}</p>
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                   <button className="btn-primary" style={{ fontSize: 14, padding: "13px 28px", borderRadius: 12 }}>{p.trialBtn}</button>
                   <button className="btn-outline" style={{ fontSize: 14, padding: "13px 24px", borderRadius: 12 }}>{p.packagesBtn}</button>
