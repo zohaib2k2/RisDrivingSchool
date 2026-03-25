@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { T } from "../constants/translation";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
@@ -17,7 +17,7 @@ const PAGE_T = {
     eyebrow: "Transparent pricing, zero surprises",
     heroTitle: "Driving",
     heroAccent: "Packages",
-    heroSub: "Choose the package that fits your pace and budget. Every package includes a trial lesson and flexible Klarna payment.",
+    heroSub: "Choose the package that fits your pace and budget. Every package includes a trial lesson and flexible   payment.",
     mostChosen: "⭐ Most chosen",
     discount: "OFF",
     wasLabel: "was",
@@ -46,7 +46,7 @@ const PAGE_T = {
       {
         n: "3",
         title: "Choose your package",
-        body: "After the trial, you and your instructor decide together which package fits best. Pay in easy Klarna instalments — no upfront stress.",
+        body: "After the trial, you and your instructor decide together which package fits best. Pay in easy   instalments — no upfront stress.",
       },
       {
         n: "4",
@@ -78,7 +78,7 @@ const PAGE_T = {
         lessons: 15,
         isMostChosen: true,
         alwaysCrash: true,
-        features: ["15 driving lessons",  "Priority scheduling", "Flexible Klarna payment"],
+        features: ["15 driving lessons",  "Priority scheduling", "Flexible   payment"],
       },
       {
         id: "advanced",
@@ -90,7 +90,7 @@ const PAGE_T = {
         crashOriginal: 1800,
         lessons: 25,
         isMostChosen: false,
-        features: ["25 driving lessons",  "Flexible Klarna payment"],
+        features: ["25 driving lessons",  "Flexible   payment"],
       },
       {
         id: "premium",
@@ -102,15 +102,39 @@ const PAGE_T = {
         crashOriginal: 2610,
         lessons: 35,
         isMostChosen: false,
-        features: ["35 driving lessons","Dedicated instructor", "Flexible Klarna payment"],
+        features: ["35 driving lessons","Dedicated instructor", "Flexible   payment"],
       },
+      {
+        id: "Guaranteed",
+        badge: "€340 OFF!",
+        name: "Guaranteed Package",
+        price: 1855,
+        originalPrice: 2165,
+        crashPrice: 2500,
+        crashOriginal: 2610,
+        lessons: 40,
+        isMostChosen: false,
+        features: ["40 driving lessons","Dedicated instructor", "Flexible  payment"],
+      },
+      {
+        id: "Certainity",
+        badge: "€400 OFF!",
+        name: "Certainity Package",
+        price: 2800,
+        originalPrice: 2165,
+        crashPrice: 2500,
+        crashOriginal: 2610,
+        lessons: 50,
+        isMostChosen: false,
+        features: ["50 driving lessons","Dedicated instructor", "Flexible  payment"],
+      }
     ],
   },
   nl: {
     eyebrow: "Transparante prijzen, geen verrassingen",
     heroTitle: "Rij-",
     heroAccent: "pakketten",
-    heroSub: "Kies het pakket dat bij uw tempo en budget past. Elk pakket bevat een proefles en flexibele Klarna-betaling.",
+    heroSub: "Kies het pakket dat bij uw tempo en budget past. Elk pakket bevat een proefles en flexibele  -betaling.",
     mostChosen: "⭐ Meest gekozen",
     discount: "KORTING",
     wasLabel: "was",
@@ -139,7 +163,7 @@ const PAGE_T = {
       {
         n: "3",
         title: "Kies uw pakket",
-        body: "Na de proefles beslist u samen met uw instructeur welk pakket het beste past. Betaal in gemakkelijke Klarna-termijnen — geen stress vooraf.",
+        body: "Na de proefles beslist u samen met uw instructeur welk pakket het beste past. Betaal in gemakkelijke  -termijnen — geen stress vooraf.",
       },
       {
         n: "4",
@@ -278,7 +302,7 @@ function PackageCard({ pkg, p, delay }) {
           }}>{p.mostChosen}</div>
         )}
 
-        <WhatsAppButton />
+       
 
         {/* Discount badge */}
         <div style={{ marginBottom: 16, marginTop: featured ? 14 : 0 }}>
@@ -415,6 +439,24 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
   const t = T[lang];
   const p = PAGE_T[lang];
 
+  const scrollRef = useRef(null);
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
+
+  function handleMouseDown(e) {
+    dragState.current = { isDown: true, startX: e.pageX - scrollRef.current.offsetLeft, scrollLeft: scrollRef.current.scrollLeft };
+    scrollRef.current.style.cursor = "grabbing";
+  }
+  function handleMouseUp() {
+    dragState.current.isDown = false;
+    scrollRef.current.style.cursor = "grab";
+  }
+  function handleMouseMove(e) {
+    if (!dragState.current.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    scrollRef.current.scrollLeft = dragState.current.scrollLeft - (x - dragState.current.startX) * 1.5;
+  }
+
   return (
     <div style={{
       fontFamily: "'Plus Jakarta Sans', 'Segoe UI', sans-serif",
@@ -448,20 +490,33 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
         </div>
       </div>
 
-      {/* ── PACKAGES GRID ─────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "72px 44px 0" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 20,
-          alignItems: "end",
-        }}>
+      {/* ── PACKAGES SCROLL ───────────────────────────────────────────────── */}
+      <div style={{ padding: "72px 44px 0" }}>
+        <div
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          style={{
+            display: "flex",
+            gap: 20,
+            overflowX: "auto",
+            cursor: "grab",
+            userSelect: "none",
+            paddingBottom: 16,
+            scrollbarWidth: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
           {p.packages.map((pkg, i) => (
-            <PackageCard key={pkg.id} pkg={pkg} p={p} delay={i * 0.08} />
+            <div key={pkg.id} style={{ minWidth: 300, flexShrink: 0 }}>
+              <PackageCard pkg={pkg} p={p} delay={i * 0.08} />
+            </div>
           ))}
         </div>
 
-        {/* Klarna note */}
+        {/*   note */}
         <FadeIn delay={0.35}>
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "center",
@@ -470,8 +525,8 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
           }}>
             <span style={{ fontSize: 18 }}>💳</span>
             {lang === "en"
-              ? "All packages available with interest-free Klarna installments"
-              : "Alle pakketten beschikbaar met renteloze Klarna-termijnen"}
+              ? "All packages available with interest-free   installments"
+              : "Alle pakketten beschikbaar met renteloze  -termijnen"}
           </div>
         </FadeIn>
       </div>
@@ -539,7 +594,7 @@ export default function DrivingPackagesPage({ lang, onLangChange }) {
           </div>
         </FadeIn>
       </div>
-
+       <WhatsAppButton />
       <div className="divider" />
       <Footer footer={t.footer} />
     </div>
