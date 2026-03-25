@@ -65,7 +65,7 @@ const PAGE_T = {
         crashOriginal: 975,
         lessons: 15,
         isMostChosen: false,
-        features: ["15 driving lessons" ],
+        features: ["15 driving lessons", "priority scheduling"],
       },
       {
         id: "emergency",
@@ -90,7 +90,7 @@ const PAGE_T = {
         crashOriginal: 1800,
         lessons: 25,
         isMostChosen: false,
-        features: ["25 driving lessons",  "Flexible   payment"],
+        features: ["25 driving lessons",  "Flexible payment", "Priority scheduling"],
       },
       {
         id: "premium",
@@ -174,7 +174,7 @@ const PAGE_T = {
     packages: [
       {
         id: "basic",
-        badge: "€990 KORTING!",
+        badge: "€190 KORTING!",
         name: "Basispakket",
         price: 795,
         originalPrice: 985,
@@ -186,9 +186,9 @@ const PAGE_T = {
       },
       {
         id: "emergency",
-        badge: "€1190 KORTING!",
+        badge: "€190 KORTING!",
         name: "Spoedpakket",
-        price: 1100,
+        price: 990,
         originalPrice: 1185,
         crashPrice: 1100,
         crashOriginal: 1290,
@@ -199,9 +199,9 @@ const PAGE_T = {
       },
       {
         id: "advanced",
-        badge: "€1320 KORTING!",
+        badge: "€250 KORTING!",
         name: "Gevorderd",
-        price: 1555,
+        price: 1325,
         originalPrice: 1575,
         crashPrice: 1550,
         crashOriginal: 1800,
@@ -221,6 +221,31 @@ const PAGE_T = {
         isMostChosen: false,
         features: ["35 rijlessen",  "Vaste instructeur"],
       },
+      {
+        id: "Guaranteed",
+        badge: "€340 KORTING!",
+        name: "Guaranteed Pakket",
+        price: 1855,
+        originalPrice: 2165,
+        crashPrice: 2500,
+        crashOriginal: 2610,
+        lessons: 40,
+        isMostChosen: false,
+        features: ["40 rijlessen",  "Vaste instructeur", "Prioriteitsplanning"],
+      },
+      {
+        id: "Certainity",
+        badge: "400 KORTING!",
+        name: "Certainity Pakket",
+        price: 2800,
+        originalPrice: 2165,
+        crashPrice: 2500,
+        crashOriginal: 2610,
+        lessons: 50,
+        isMostChosen: false,
+        features: ["50 rijlessen",  "Vaste instructeur", "Prioriteitsplanning"],
+      },
+
     ],
   },
 };
