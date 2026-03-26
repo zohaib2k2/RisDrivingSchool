@@ -6,6 +6,7 @@ import BookingCard from "./BookingCard";
 // Vite resolves this at build time → hashed URL like /assets/golf_gti-Cx3kP9aB.glb
 // Works correctly on any deployment (Vercel, Netlify, GitHub Pages, etc.)
 import golfGtiUrl from "/public/models/2021_Volkswagen_Golf_GTI.glb?url";
+import { div } from "three/tsl";
 
 // ── Responsive camera ─────────────────────────────────────────────────────────
 function CameraRig() {
@@ -13,7 +14,7 @@ function CameraRig() {
   useEffect(() => {
     const mobile = size.width < 768;
     camera.fov = mobile ? 72 : 42;
-    camera.position.set(mobile ? 4 : 4, mobile ? 2.5 : 1.5, mobile ? 10 : 6);
+    camera.position.set(mobile ? 2 : 4, mobile ? 4.2 : 1.5, mobile ? 8 : 6);
     camera.updateProjectionMatrix();
   }, [camera, size.width]);
   return null;
@@ -63,7 +64,7 @@ export default function HeroSection({ hero, card }) {
     <section className="hero-wrap" style={{ position: "relative", overflow: "hidden", minHeight: 760 }}>
 
       {/* ── Full-bleed 3D Canvas as background ─────────────────────────── */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+      <div className="hero-canvas-wrap" style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <Canvas
           camera={{ position: [4, 1.5, 6], fov: 42 }}
           style={{ background: "#03050f" }}
@@ -179,14 +180,8 @@ export default function HeroSection({ hero, card }) {
           }}>
           </p>
         </div>
-
-        {/* Booking card */}
-        <div className="hero-card-wrap" style={{
-          width: "min(445px,100%)", flexShrink: 0, pointerEvents: "auto",
-          opacity: 0, animation: "fadeUp 0.9s 0.28s cubic-bezier(.16,1,.3,1) forwards",
-          display: "flex", flexDirection: "column", justifyContent: "flex-end",
-        }}>
-          { isMobile ? (
+        {
+          isMobile ? (
             <div>
               <br />
               <br />
@@ -203,27 +198,17 @@ export default function HeroSection({ hero, card }) {
               <br />
               <br />
               <br />
-              <br />
-              <br />
-            </div>
 
-          ) : null }
-          {
-            isPhone ? (
-              <div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-               
-                <br />
-              </div>): null
-          }
+            </div>
+            
+          ): null
+        }
+        {/* Booking card */}
+        <div className="hero-card-wrap" style={{
+          width: "min(445px,100%)", flexShrink: 0, pointerEvents: "auto",
+          opacity: 0, animation: "fadeUp 0.9s 0.28s cubic-bezier(.16,1,.3,1) forwards",
+          display: "flex", flexDirection: "column", justifyContent: "flex-end",
+        }}>
           <BookingCard card={card} />
         </div>
       </div>
