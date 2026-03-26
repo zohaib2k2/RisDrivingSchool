@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import FadeIn from "./FadeIn";
 
 export default function CtaSection({ cta2, lang }) {
+  const navigate = useNavigate();
   return (
     <section className="cta-band">
       {/* Decorative rings */}
@@ -38,7 +40,7 @@ export default function CtaSection({ cta2, lang }) {
             <button className="btn-primary" style={{ fontSize: 16, padding: "18px 42px", borderRadius: 16 }}>
               {cta2.btn}
             </button>
-            <button className="btn-outline" style={{ fontSize: 15, padding: "18px 32px", borderRadius: 16 }}>
+            <button className="btn-outline" style={{ fontSize: 15, padding: "18px 32px", borderRadius: 16 }} onClick={() => navigate("/RisDrivingSchool/packages")}>
               {lang === "en" ? "View Packages →" : "Pakketten bekijken →"}
             </button>
           </div>
