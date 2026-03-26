@@ -191,6 +191,11 @@ export default function HeroSection({ hero, card }) {
               <br />
               <br />
               <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
             </div>
 
           ) : null }
