@@ -41,11 +41,20 @@ function CarModel() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HeroSection({ hero, card }) {
-  // true on screens ≤ 900 px, updates on resize / orientation change
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 900);
+  // true on tablets + phones (≤ 900 px)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 900);
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
     const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // true on phones only (≤ 430 px — covers iPhone 15 Pro at 393 px, portrait & landscape)
+  const [isPhone, setIsPhone] = useState(() => window.innerWidth <= 430);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 430px)");
+    const handler = (e) => setIsPhone(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
@@ -199,6 +208,28 @@ export default function HeroSection({ hero, card }) {
             </div>
 
           ) : null }
+          {
+            isPhone ? (
+              <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+              </div>): null
+          }
           <BookingCard card={card} />
         </div>
       </div>
