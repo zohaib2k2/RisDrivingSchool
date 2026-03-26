@@ -183,7 +183,13 @@ html { scroll-behavior: smooth; }
 .divider { height:1px; background:linear-gradient(90deg,transparent,rgba(59,130,246,0.18),transparent); }
 
 @media(max-width:900px){
-    .hero-inner{flex-direction:column !important; padding:60px 20px !important;}
+    .hero-wrap{align-items:stretch !important;}
+    .hero-inner{flex-direction:column !important; padding:60px 20px 32px !important; min-height:100% !important;}
+    .hero-card-wrap{margin-top:auto !important; width:100% !important;}
+    .bcard{padding:20px 18px !important; border-radius:20px !important;}
+    .bcard h2{font-size:20px !important;}
+    .bcard p.gradient-text{font-size:13.5px !important; margin-bottom:14px !important;}
+    .perk-row{margin-bottom:7px !important;}
     .stat-band{grid-template-columns:repeat(2,1fr) !important;}
     .feat-grid{grid-template-columns:1fr !important;}
     .nav-links{display:none !important;}

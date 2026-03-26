@@ -1,4 +1,4 @@
-import { Suspense, useRef, useEffect } from "react";
+import { Suspense, useRef, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import BookingCard from "./BookingCard";
@@ -41,8 +41,17 @@ function CarModel() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HeroSection({ hero, card }) {
+  // true on screens ≤ 900 px, updates on resize / orientation change
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 900);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
-    <section className="hero-wrap" style={{ position: "relative", overflow: "hidden", minHeight: 680 }}>
+    <section className="hero-wrap" style={{ position: "relative", overflow: "hidden", minHeight: 760 }}>
 
       {/* ── Full-bleed 3D Canvas as background ─────────────────────────── */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
@@ -108,12 +117,12 @@ export default function HeroSection({ hero, card }) {
           position: "relative", zIndex: 2,
           maxWidth: 1240, margin: "0 auto",
           padding: "80px 44px", width: "100%",
-          display: "flex", alignItems: "center", gap: 60,
+          display: "flex", alignItems: "stretch", gap: 60,
           pointerEvents: "none",  // canvas stays interactive underneath
         }}
       >
         {/* Left copy */}
-        <div style={{ flex: 1, minWidth: 0, pointerEvents: "auto" }}>
+        <div style={{ flex: 1, minWidth: 0, pointerEvents: "auto", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div style={{ opacity: 0, animation: "fadeUp 0.75s 0.05s cubic-bezier(.16,1,.3,1) forwards" }}>
             <div className="eyebrow-pill" style={{ marginBottom: 24 }}>
               <div className="eyebrow-dot" />
@@ -163,10 +172,23 @@ export default function HeroSection({ hero, card }) {
         </div>
 
         {/* Booking card */}
-        <div style={{
+        <div className="hero-card-wrap" style={{
           width: "min(445px,100%)", flexShrink: 0, pointerEvents: "auto",
           opacity: 0, animation: "fadeUp 0.9s 0.28s cubic-bezier(.16,1,.3,1) forwards",
+          display: "flex", flexDirection: "column", justifyContent: "flex-end",
         }}>
+          { isMobile ? (
+            <div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </div>
+
+          ) : null }
           <BookingCard card={card} />
         </div>
       </div>
