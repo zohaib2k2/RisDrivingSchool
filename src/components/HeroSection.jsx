@@ -14,7 +14,7 @@ function CameraRig() {
   useEffect(() => {
     const mobile = size.width < 768;
     camera.fov = mobile ? 72 : 42;
-    camera.position.set(mobile ? 2 : 4, mobile ? 4.2 : 1.5, mobile ? 8 : 6);
+    camera.position.set(mobile ? 4 : 4, mobile ? 4.2 : 1.5, mobile ? 8 : 6);
     camera.updateProjectionMatrix();
   }, [camera, size.width]);
   return null;
