@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "/public/logos/logo_v2.jpeg";
+import logo from "/public/logos/new_favicon_logo.png";
 
 const NAV_LINKS = [
   { key: "emergency",   to: "/RisDrivingSchool/emergency"   },

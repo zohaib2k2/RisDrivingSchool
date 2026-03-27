@@ -1,4 +1,4 @@
-import logo from "/public/logos/logo_v2.jpeg";
+import logo from "/public/logos/new_favicon_logo.png";
 
 export default function Footer({ footer }) {
   return (

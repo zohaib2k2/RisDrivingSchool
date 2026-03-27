@@ -6,7 +6,6 @@ import BookingCard from "./BookingCard";
 // Vite resolves this at build time → hashed URL like /assets/golf_gti-Cx3kP9aB.glb
 // Works correctly on any deployment (Vercel, Netlify, GitHub Pages, etc.)
 import golfGtiUrl from "/public/models/2021_Volkswagen_Golf_GTI.glb?url";
-import { div } from "three/tsl";
 
 // ── Responsive camera ─────────────────────────────────────────────────────────
 function CameraRig() {
